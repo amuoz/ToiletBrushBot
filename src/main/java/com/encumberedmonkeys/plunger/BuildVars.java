@@ -14,8 +14,6 @@ public class BuildVars {
     public static final String pathToCertificatePublicKey = "path/to/my/certkey.pem";
     public static final String certificatePublicKeyFileName = "certkey.pem";
 
-    public static final String OPENWEATHERAPIKEY = "<your-api-key>";
-
     public static final String DirectionsApiKey = "<your-api-key>";
 
     public static final String TRANSIFEXUSER = "<transifex-user>";

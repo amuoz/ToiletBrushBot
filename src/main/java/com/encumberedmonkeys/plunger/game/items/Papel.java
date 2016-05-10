@@ -1,6 +1,8 @@
-package com.encumberedmonkeys.plunger.game.objetos;
+package com.encumberedmonkeys.plunger.game.items;
 
-public class Papel extends Objeto {
+import com.encumberedmonkeys.plunger.game.Item;
+
+public class Papel extends Item {
 
 	public Papel() {
 		this.nombre = "papel";
@@ -9,7 +11,6 @@ public class Papel extends Objeto {
 		this.usarInactivo = "¿Por qué? Mi culete ya está limpio.";
 		this.activo = false;
 		this.coger = true;
-		this.loTengo = false;
 	}
 
 }

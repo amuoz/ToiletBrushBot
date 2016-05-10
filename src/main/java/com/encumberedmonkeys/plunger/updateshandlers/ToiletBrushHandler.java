@@ -1,9 +1,9 @@
 package com.encumberedmonkeys.plunger.updateshandlers;
 
 import com.encumberedmonkeys.plunger.Commands;
-import com.encumberedmonkeys.plunger.game.Juego;
-import com.encumberedmonkeys.plunger.game.Mensajes;
-import com.encumberedmonkeys.plunger.game.objetos.Objeto;
+import com.encumberedmonkeys.plunger.game.Game;
+import com.encumberedmonkeys.plunger.game.Messages;
+import com.encumberedmonkeys.plunger.game.items.Objeto;
 import lombok.extern.slf4j.Slf4j;
 import com.encumberedmonkeys.plunger.BotConfig;
 import org.telegram.telegrambots.TelegramApiException;
@@ -21,7 +21,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 @Slf4j
 public class ToiletBrushHandler extends TelegramLongPollingBot {
 
-	private Juego juego;
+	private Game juego;
 	private String comandoActual;
 
 	@Override
@@ -41,27 +41,27 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 
 			String mensaje = message.getText();
 
-			// start
+			// startcmd
 			if (isStart(mensaje)) {
-				juego = new Juego();
-				enviarMensaje(message, Mensajes.startMessage);
-				// help
+				juego = new Game();
+				sendMessageToBot(message, Messages.startMessage);
+				// helpcmd
 			} else if (isHelp(mensaje)) {
-				enviarMensaje(message, Mensajes.helpMessage);
+				sendMessageToBot(message, Messages.helpMessage);
 			}
 			// comandos: examinar,coger,usar,hablar
 			else if (isComando(mensaje)) {
 				comandoActual = mensaje;
 				log.info("COMANDO ACTUAL: " + comandoActual);
-				enviarMensaje(message, getMensajeComando(mensaje));
+				sendMessageToBot(message, getMensajeComando(mensaje));
 			}
 			// EXAMINAR objeto
 			else if (isExaminar()) {
 				Objeto objeto = juego.buscarPorNombre(mensaje);
 				if (objeto != null) {
-					enviarMensaje(message, objeto.getExaminar());
+					sendMessageToBot(message, objeto.getExaminar());
 				} else {
-					enviarMensaje(message, Mensajes.noExisteMessage);
+					sendMessageToBot(message, Messages.noExisteMessage);
 				}
 
 				// reset comando actual
@@ -75,9 +75,9 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 						// Activamos el papel
 						juego.papel.setActivo(true);
 					}
-					enviarMensaje(message, objeto.usar());
+					sendMessageToBot(message, objeto.usar());
 				} else {
-					enviarMensaje(message, Mensajes.noExisteMessage);
+					sendMessageToBot(message, Messages.noExisteMessage);
 				}
 
 				// reset comando actual
@@ -88,9 +88,9 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 				Objeto objeto = juego.buscarPorNombre(mensaje);
 				if (objeto != null && objeto.isActivo() && objeto.isCoger() && !objeto.isLoTengo()) {
 					objeto.coger();
-					enviarMensaje(message, Mensajes.cogidoMessage);
+					sendMessageToBot(message, Messages.cogidoMessage);
 				} else {
-					enviarMensaje(message, Mensajes.noExisteMessage);
+					sendMessageToBot(message, Messages.noExisteMessage);
 				}
 
 				// reset comando actual
@@ -107,72 +107,64 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 
 	}
 
-	private String getMensajeComando(String mensaje) {
-		if (isExaminar(mensaje))
-			return Mensajes.examinarMessage;
-		else if (isCoger(mensaje))
-			return Mensajes.cogerMessage;
-		else if (isUsar(mensaje))
-			return Mensajes.usarMessage;
-		else if (isHablar(mensaje))
-			return Mensajes.hablarMessage;
+	private String getMensajeComando(String message) {
+		if (isExaminar(message))
+			return Messages.examinarMessage;
+		else if (isCoger(message))
+			return Messages.cogerMessage;
+		else if (isUsar(message))
+			return Messages.usarMessage;
+		else if (isHablar(message))
+			return Messages.hablarMessage;
 		else
-			return Mensajes.noExisteComandoMessage;
+			return Messages.noExisteComandoMessage;
 	}
 
-	private boolean isStart(String mensaje) {
-		return mensaje.startsWith(Commands.startCommand);
+	private boolean isStart(String message) {
+		return message.startsWith(Commands.startCmd);
 	}
 
-	private boolean isHelp(String mensaje) {
-		return mensaje.startsWith(Commands.help);
+	private boolean isHelp(String message) {
+		return message.startsWith(Commands.helpCmd);
 	}
 
-	private boolean isExaminar(String mensaje) {
-		return mensaje.startsWith(Commands.examinarCommand);
+	private boolean isExaminar(String message) {
+		return message.startsWith(Commands.examineCmd);
 	}
 
-	private boolean isUsar(String mensaje) {
-		return mensaje.startsWith(Commands.usarCommand);
+	private boolean isUsar(String message) {
+		return message.startsWith(Commands.useCmd);
 	}
 
-	private boolean isCoger(String mensaje) {
-		return mensaje.startsWith(Commands.cogerCommand);
+	private boolean isCoger(String message) {
+		return message.startsWith(Commands.pickupCmd);
 	}
 
-	private boolean isHablar(String mensaje) {
-		return mensaje.startsWith(Commands.hablarCommand);
+	private boolean isHablar(String message) {
+		return message.startsWith(Commands.talkCmd);
 	}
 
-	private boolean isComando(String mensaje) {
-		return isExaminar(mensaje) || isUsar(mensaje) || isCoger(mensaje) || isHablar(mensaje);
+	private boolean isComando(String message) {
+		return isExaminar(message) || isUsar(message) || isCoger(message) || isHablar(message);
 	}
 
 	private boolean isExaminar() {
-		return comandoActual.equals(Commands.examinarCommand);
+		return comandoActual.equals(Commands.examineCmd);
 	}
 
 	private boolean isUsar() {
-		return comandoActual.equals(Commands.usarCommand);
+		return comandoActual.equals(Commands.useCmd);
 	}
 
 	private boolean isCoger() {
-		return comandoActual.equals(Commands.cogerCommand);
+		return comandoActual.equals(Commands.pickupCmd);
 	}
 
 	private boolean isHablar() {
-		return comandoActual.equals(Commands.hablarCommand);
+		return comandoActual.equals(Commands.talkCmd);
 	}
 
-	/**
-	 * Envía un mensaje de texto al usuario actual
-	 * 
-	 * @param message
-	 *            Mensaje recibido
-	 * @param text
-	 *            Texto a enviar
-	 */
-	private void enviarMensaje(Message message, String text) {
+	private void sendMessageToBot(Message message, String text) {
 		SendMessage sendMessage = new SendMessage();
 		sendMessage.setChatId(message.getChatId().toString());
 		sendMessage.enableMarkdown(true);
@@ -181,7 +173,6 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 			sendMessage(sendMessage);
 		} catch (TelegramApiException e) {
 			log.error("Error in telegram API", e);
-			e.printStackTrace();
 		}
 	}
 

@@ -2,13 +2,13 @@ package com.encumberedmonkeys.plunger.game;
 
 import com.encumberedmonkeys.plunger.Commands;
 
-public class Mensajes {
+public class Messages {
 
 	public static final String helpMessage = "Usa este bot para jugar a la aventura gráfica de la super escobilla.\n\n"
 			+ "Utiliza los siguientes comandos para ayudar a nuestra gordito amigo Plunger en su aventura:\n\n"
-			+ Commands.startCommand + " : empezar a jugar\n" + Commands.help + " : mostrar ayuda\n"
-			+ Commands.cogerCommand + " : coger un objeto\n" + Commands.examinarCommand + " : examinar algo\n"
-			+ Commands.hablarCommand + " : hablar con\n" + Commands.usarCommand + " : usar un objeto\n";
+			+ Commands.startCmd + " : empezar a jugar\n" + Commands.helpCmd + " : mostrar ayuda\n"
+			+ Commands.pickupCmd + " : coger un objeto\n" + Commands.examineCmd + " : examinar algo\n"
+			+ Commands.talkCmd + " : hablar con\n" + Commands.useCmd + " : usar un objeto\n";
 
 	public static final String startMessage = "Plunger se encuentra frente a la gran caseta letrina del campamento.\n"
 			+ "Nunca la había imaginado así de enorme, perdiéndose en el estrellado cielo.\n\n"

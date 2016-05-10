@@ -1,6 +1,8 @@
-package com.encumberedmonkeys.plunger.game.objetos;
+package com.encumberedmonkeys.plunger.game.items;
 
-public class Letrina extends Objeto {
+import com.encumberedmonkeys.plunger.game.Item;
+
+public class Letrina extends Item {
 
 	public Letrina() {
 		this.nombre = "letrina";
@@ -13,7 +15,6 @@ public class Letrina extends Objeto {
 
 		this.activo = true;
 		this.coger = false;
-		this.loTengo = false;
 	}
 
 }
