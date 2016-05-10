@@ -1,0 +1,24 @@
+
+package com.encumberedmonkeys.plunger;
+
+import lombok.extern.slf4j.Slf4j;
+import org.telegram.telegrambots.TelegramApiException;
+import org.telegram.telegrambots.TelegramBotsApi;
+import com.encumberedmonkeys.plunger.updateshandlers.ToiletBrushHandler;
+
+/**
+ * @author AMUNOZ & thenanox
+ * @version 0.1
+ * Clase principal registrar el bot.
+ */
+@Slf4j
+public class Main {
+	public static void main(String[] args) {
+		TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
+		try {
+			telegramBotsApi.registerBot(new ToiletBrushHandler());
+		} catch (TelegramApiException e) {
+			log.error("Error in Telegram bot", e);
+		}
+	}
+}

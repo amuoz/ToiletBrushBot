@@ -1,42 +1,5 @@
-# Telegram Bot Java Library
-A simple to use library to create Telegram Bots in Java (Still Beta Version)
-
-## Translations
-Bots are now supporting multilanguage. If you want to add your own, feel free to translate at [transifex](https://www.transifex.com/projects/p/telegrambots/)
-
-## Contributions
-Feel free to fork this project, work on it and then make a pull request. Most of the times I will accept them if they add something valuable to the code. 
-
-Please, **DO NOT PUSH ANY TOKEN OR API KEY**, I will never accept a pull request with that content.
-
-## Webhooks vs GetUpdates
-Both ways are supported (but I still didn't tested webhooks). To change between them, just go to *BuildVars.java* and change variable *useWebHook* value.
-
-I recommend using getUpdates methods. Webhooks a bit less trustful
-
-## Example bots
-Open them and send them */help* command to get some information about their capabilities:
-
-https://telegram.me/weatherbot 
-
-https://telegram.me/directionsbot
-
-https://telegram.me/filesbot
-
-https://telegram.me/TGlanguagesbot
-
-## Telegram Bot API
-This library use [Telegram bot API](https://core.telegram.org/bots), you can find more information following the link.
-
-## Questions or Suggestions
-Feel free to create issues [here](https://github.com/rubenlagus/TelegramBots/issues) as you need
-
-## Usage with eclipse
-
-Follow the steps created by Rico [here](https://github.com/rubenlagus/TelegramBots/blob/master/eclipse%20configuration.md)
-
-## Tutorial
-Short tutorial how to make a simple Echo Bot is available [here](HOWTO.md)
+# Toilet Brush Bot
+Text adventure game based on telegram bot!
 
 ## License 
 
