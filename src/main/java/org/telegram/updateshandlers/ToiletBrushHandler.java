@@ -12,9 +12,15 @@ import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 
-public class MyProjectHandler extends TelegramLongPollingBot {
+/**
+ * Manejador LongPolling para ToiletBrushBot.
+ * 
+ * @author AMUNOZ
+ *
+ */
+public class ToiletBrushHandler extends TelegramLongPollingBot {
 
-	private static final Logger LOG = Logger.getLogger(MyProjectHandler.class);
+	private static final Logger LOG = Logger.getLogger(ToiletBrushHandler.class);
 
 	private Juego juego;
 	private String comandoActual;

@@ -4,13 +4,13 @@ package org.telegram;
 import org.apache.log4j.Logger;
 import org.telegram.telegrambots.TelegramApiException;
 import org.telegram.telegrambots.TelegramBotsApi;
-import org.telegram.updateshandlers.MyProjectHandler;
+import org.telegram.updateshandlers.ToiletBrushHandler;
 
 /**
- * @author Ruben Bermudez
+ * @author AMUNOZ
  * @version 1.0
- * @brief Main class to create all bots
- * @date 20 of June of 2015
+ * @brief Clase principal registrar los bots.
+ * @date 10-05-2016
  */
 public class Main {
 	private static final Logger LOG = Logger.getLogger(Main.class);
@@ -19,7 +19,7 @@ public class Main {
 
 		TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
 		try {
-			telegramBotsApi.registerBot(new MyProjectHandler());
+			telegramBotsApi.registerBot(new ToiletBrushHandler());
 		} catch (TelegramApiException e) {
 			LOG.error(e);
 		}
