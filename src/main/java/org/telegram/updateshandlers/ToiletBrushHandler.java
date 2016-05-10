@@ -121,7 +121,6 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 			return Mensajes.hablarMessage;
 		else
 			return Mensajes.noExisteComandoMessage;
-
 	}
 
 	private boolean isStart(String mensaje) {
