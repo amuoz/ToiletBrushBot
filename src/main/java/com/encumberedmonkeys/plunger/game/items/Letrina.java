@@ -1,7 +1,5 @@
 package com.encumberedmonkeys.plunger.game.items;
 
-import com.encumberedmonkeys.plunger.game.Item;
-
 public class Letrina extends Item {
 
 	public Letrina() {
@@ -15,6 +13,24 @@ public class Letrina extends Item {
 
 		this.activo = true;
 		this.coger = false;
+		this.loTengo = false;
+	}
+
+	@Override
+	public void use() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void pickup() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void talk() {
+		// TODO Auto-generated method stub
+
 	}
 
 }
