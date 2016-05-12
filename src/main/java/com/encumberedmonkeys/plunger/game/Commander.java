@@ -2,6 +2,7 @@ package com.encumberedmonkeys.plunger.game;
 
 import com.encumberedmonkeys.plunger.Commands;
 import com.encumberedmonkeys.plunger.game.items.Item;
+import com.encumberedmonkeys.plunger.services.LocalisationService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -21,6 +22,8 @@ public class Commander {
 		// input example: use letrina
 		String[] input = userInput.split(" ");
 		String command = input[0].toLowerCase();
+		String object = "";
+		if(input.length>1) object = input[1].toLowerCase();
 
 		log.debug("userInput: " + userInput);
 
@@ -29,7 +32,15 @@ public class Commander {
 		if (!isValidCommand(command)) {
 			// command does not exist
 			log.info("No existe el comando");
-			return Messages.commandDoesntExist;
+			return Messages.commandDoesntExist();
+		}
+
+		if (command.equals(Commands.languageCmd)) {
+			LocalisationService localisationService = LocalisationService.getInstance();
+			if(localisationService.getSupportedLanguages().containsKey(object)){
+				localisationService.setLanguage(object);
+			}
+			return "Se ha cambiado el idioma a: " + object;
 		}
 
 		// If action command then get item
@@ -37,26 +48,28 @@ public class Commander {
 			// check user wrote item name
 			if (input.length < 2) {
 				log.info("Usuario no especifica item");
-				return Messages.noItem;
+				return Messages.noItem();
 			}
 
-			String itemName = input[1].toLowerCase();
+			String itemName = object.toLowerCase();
 
 			// check if item exist
 			item = Game.getInstance().getItem(itemName);
 			if (item == null) {
 				log.info("No existe el item");
-				return Messages.itemNotExist;
+				return Messages.itemNotExist();
 			}
 		}
 
 		switch (command) {
 			case Commands.startCmd:
-				return Messages.start;
+				return Messages.start();
 			case Commands.helpCmd:
-				return Messages.help;
+				return Messages.help();
+			case Commands.languageCmd:
+				return Messages.language();
 			case Commands.examineCmd:
-				return item.examine();
+			return item.examine();
 			case Commands.useCmd:
 				return item.use();
 			case Commands.pickupCmd:
@@ -77,7 +90,7 @@ public class Commander {
 	private boolean isValidCommand(String command) {
 		return command.equals(Commands.startCmd) || command.equals(Commands.helpCmd) || command.equals(Commands.useCmd)
 				|| command.equals(Commands.examineCmd) || command.equals(Commands.pickupCmd) || command.equals(Commands.inventoryCmd)
-				|| command.equals(Commands.talkCmd);
+				|| command.equals(Commands.languageCmd) || command.equals(Commands.talkCmd);
 	}
 
 }
