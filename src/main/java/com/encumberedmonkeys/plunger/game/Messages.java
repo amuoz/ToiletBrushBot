@@ -20,11 +20,6 @@ public class Messages {
 			+ "Al darse al vuelta en busca de la taza de váter que le salvará la vida queda estupefacto al observar aquel agujero asqueroso y mal oliente.\n\n"
 			+ "Se trata de una letrina turca con papel mojado en el suelo.";
 
-	public static final String examine = "¿Qué quieres examinar?";
-	public static final String use = "¿Qué quieres usar?";
-	public static final String pick = "¿Qué quieres coger?";
-	public static final String talk = "¿A quién quieres hablar?";
-
 	public static final String noItem = "Debes indicar el nombre de un objeto.";
 	public static final String commandNotExist = "El comando indicado no existe.";
 	public static final String itemNotExist = "El objeto indicado no existe.";

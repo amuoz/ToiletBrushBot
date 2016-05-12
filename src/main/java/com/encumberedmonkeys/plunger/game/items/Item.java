@@ -4,8 +4,13 @@ import com.encumberedmonkeys.plunger.updateshandlers.ToiletBrushHandler;
 
 import lombok.Data;
 
+import java.util.Locale;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
+
 @Data
 public abstract class Item {
+	ResourceBundle gameResources = ResourceBundle.getBundle("game.game", new Locale("es"));
 	protected String nombre; // identificador único del objeto
 	protected String examinar; // descripción mostrada al examinar el objeto
 	protected String usarActivo; // descripción mostrada al usar el objeto
@@ -18,7 +23,7 @@ public abstract class Item {
 		ToiletBrushHandler.getInstance().sendMessageToUser(examinar);
 	}
 
-	public abstract void use();
+	public abstract void use() ;
 
 	public abstract void pickup();
 

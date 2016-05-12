@@ -1,7 +1,7 @@
 package com.encumberedmonkeys.plunger;
 
 /**
- * @author ANTMUOZ & thenanox
+ * @author muoz & thenanox
  * @version 0.1
  * Bots configurations
  */

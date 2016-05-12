@@ -1,6 +1,7 @@
 package com.encumberedmonkeys.plunger;
 
 /**
+ * @author muoz & thenanox
  * @version 1.0 Bot commands
  */
 public class Commands {
