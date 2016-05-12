@@ -17,19 +17,29 @@ public class Game {
 	@Getter
 	private Player player;
 
+	@Getter
 	private Level level;
 
-	public Game() {
+	private Game() {
 		player = new Player();
 		level = new Cabin();
 	}
 
 	public Item getItem(String name) {
+		// podemos interactuar con objetos del nivel
 		for (Item object : level.getObjects()) {
 			if (object.getName().equals(name)) {
 				return object;
 			}
 		}
+
+		// transparentemente podemos interactuar con objetos del inventario
+		for (Item object : player.getInventory()) {
+			if (object.getName().equals(name)) {
+				return object;
+			}
+		}
+
 		return null;
 	}
 

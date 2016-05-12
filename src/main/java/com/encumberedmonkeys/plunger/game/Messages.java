@@ -12,13 +12,13 @@ public class Messages {
 			+ Commands.pickCmd + " : coger un objeto\n" + Commands.examineCmd + " : examinar algo\n" + Commands.talkCmd
 			+ " : hablar con\n" + Commands.useCmd + " : usar un objeto";
 
-	public static final String start = "Plunger se encuentra frente a la gran caseta letrina del campamento.\n"
+	public static final String start = "Plunger se encuentra frente a la gran caseta <b>letrina</b> del campamento.\n"
 			+ "Nunca la había imaginado así de enorme, perdiéndose en el estrellado cielo.\n\n"
 			+ "Está a punto de dar media vuelta, pero no aguanta más ¡se está cagando!\n\n"
 			+ "Con un arrebato se introduce en la caseta y cierra la puerta a toda ostia "
 			+ "echando el pestillo de aquella manera por el ansia de la cagada.\n\n"
 			+ "Al darse al vuelta en busca de la taza de váter que le salvará la vida queda estupefacto al observar aquel agujero asqueroso y mal oliente.\n\n"
-			+ "Se trata de una letrina turca con papel mojado en el suelo.";
+			+ "Se trata de una <b>letrina</b> turca con <b>papel</b> mojado en el suelo.";
 
 	public static final String noItem = "Debes indicar el nombre de un objeto.";
 	public static final String commandNotExist = "El comando indicado no existe.";

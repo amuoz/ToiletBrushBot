@@ -63,16 +63,16 @@ public class Commander {
 			ToiletBrushHandler.getInstance().sendMessageToUser(Messages.help);
 			break;
 		case Commands.examineCmd:
-			item.examine();
+			ToiletBrushHandler.getInstance().sendMessageToUser(item.examine());
 			break;
 		case Commands.useCmd:
-			item.use();
+			ToiletBrushHandler.getInstance().sendMessageToUser(item.use());
 			break;
 		case Commands.pickCmd:
-			item.pick();
+			ToiletBrushHandler.getInstance().sendMessageToUser(item.pick());
 			break;
 		case Commands.talkCmd:
-			item.talk();
+			ToiletBrushHandler.getInstance().sendMessageToUser(item.talk());
 			break;
 		}
 

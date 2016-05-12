@@ -1,11 +1,11 @@
 package com.encumberedmonkeys.plunger.game.items;
 
-import com.encumberedmonkeys.plunger.updateshandlers.ToiletBrushHandler;
-
 import lombok.Getter;
 
 public class Letrina extends Item {
 
+	@Getter
+	private final String name = gameResources.getString("letrina.name");
 	@Getter
 	private final String examineBeforeShitMsg = gameResources.getString("letrina.examineBeforeShitMsg");
 	@Getter
@@ -19,42 +19,39 @@ public class Letrina extends Item {
 	@Getter
 	private final String talkLetrinaMsg = gameResources.getString("letrina.talkLetrinaMsg");
 
+	@Getter
 	private boolean usada;
 
 	public Letrina() {
-		name = gameResources.getString("letrina.name");
-
-		useMsg = getUseBeforeShitMsg();
-		examineMsg = getExamineBeforeShitMsg();
-		pickMsg = getPickLetrinaMsg();
-
-		usada = false; // inicialmente al usar letrina caga
+		usada = false;
 	}
 
 	@Override
-	public void examine() {
-		ToiletBrushHandler.getInstance().sendMessageToUser(examineMsg);
+	public String examine() {
+		if (!usada)
+			return getExamineBeforeShitMsg();
+		return getExamineAfterShitMsg();
 	}
 
 	@Override
-	public void use() {
-		ToiletBrushHandler.getInstance().sendMessageToUser(useMsg);
+	public String use() {
 
-		// La primera vez que se usa
+		// marcamos como usada primera vez
 		if (!usada) {
-			useMsg = getUseAfterShitMsg();
-			examineMsg = getExamineAfterShitMsg();
 			usada = true;
+			return getUseBeforeShitMsg();
 		}
+		return getUseAfterShitMsg();
 	}
 
 	@Override
-	public void pick() {
-		ToiletBrushHandler.getInstance().sendMessageToUser(pickMsg);
+	public String pick() {
+		return getPickLetrinaMsg();
 	}
 
-	public void talk() {
-		ToiletBrushHandler.getInstance().sendMessageToUser(getTalkLetrinaMsg());
+	@Override
+	public String talk() {
+		return getTalkLetrinaMsg();
 	}
 
 }

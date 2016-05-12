@@ -73,6 +73,7 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 		SendMessage sendMessage = new SendMessage();
 		sendMessage.setChatId(chatId);
 		sendMessage.enableMarkdown(true);
+		sendMessage.enableHtml(true);
 		sendMessage.setText(text);
 		try {
 			sendMessage(sendMessage);
