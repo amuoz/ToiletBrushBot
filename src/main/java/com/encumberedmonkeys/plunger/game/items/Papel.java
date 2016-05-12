@@ -10,15 +10,8 @@ public class Papel extends Item {
 
 	private boolean enInventario;
 
-	private Letrina letrina;
-
 	public Papel() {
 		enInventario = false;
-	}
-
-	public Papel(Letrina letrina) {
-		this();
-		this.letrina = letrina;
 	}
 
 	@Override
@@ -35,6 +28,7 @@ public class Papel extends Item {
 	public String use() {
 		if (enInventario) {
 
+			Letrina letrina = (Letrina) Game.getInstance().getItem(LocalisationService.getInstance().getString("letrina.name"));
 			// si hemos cagado nos limpiamos
 			if (letrina.isUsada()) {
 				Game.getInstance().getPlayer().getInventory().remove(this);

@@ -1,11 +1,10 @@
 package com.encumberedmonkeys.plunger.updateshandlers;
 
 import com.encumberedmonkeys.plunger.BotConfig;
-import com.encumberedmonkeys.plunger.game.Commander;
+import com.encumberedmonkeys.plunger.Commander;
 import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.TelegramApiException;
 import org.telegram.telegrambots.api.methods.SendMessage;
-import org.telegram.telegrambots.api.methods.SendPhoto;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -40,7 +39,7 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 	@Override
 	public void onUpdateReceived(Update update) {
 		Message message = update.getMessage();
-		if (message != null && message.hasText()) {
+		if (message != null) {
 			chatId = message.getChatId().toString();
 			sendMessageToUser(Commander.getInstance().execute(message));
 		}
@@ -53,19 +52,7 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 		sendMessage.enableHtml(true);
 		sendMessage.setText(text);
 		try {
-			Message m = sendMessage(sendMessage);
-			this.sendPhotoToUser("");
-		} catch (TelegramApiException e) {
-			log.error("Error in telegram API", e);
-		}
-	}
-	
-	public void sendPhotoToUser(String text) {
-		SendPhoto sendPhoto = new SendPhoto();
-		sendPhoto.setChatId(chatId);
-		sendPhoto.setPhoto("AgADBAADtacxG8qbpQl7wEQ6O6fIMCb_QhkABGXufz5JgVZwDgYBAAEC");
-		try {
-			sendPhoto(sendPhoto);
+			sendMessage(sendMessage);
 		} catch (TelegramApiException e) {
 			log.error("Error in telegram API", e);
 		}
