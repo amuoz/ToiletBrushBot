@@ -2,8 +2,6 @@ package com.encumberedmonkeys.plunger.game;
 
 import com.encumberedmonkeys.plunger.Commands;
 import com.encumberedmonkeys.plunger.game.items.Item;
-import com.encumberedmonkeys.plunger.updateshandlers.ToiletBrushHandler;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -15,19 +13,23 @@ public class Commander {
 		return COMMANDER;
 	}
 
-	public void execute(String userInput) {
+	private Commander() {
+	}
+
+	public String execute(String userInput) {
 
 		// input example: use letrina
 		String[] input = userInput.split(" ");
 		String command = input[0].toLowerCase();
+
+		log.debug("userInput: " + userInput);
 
 		Item item = null;
 
 		if (!isValidCommand(command)) {
 			// command does not exist
 			log.info("No existe el comando");
-			ToiletBrushHandler.getInstance().sendMessageToUser(Messages.commandNotExist);
-			return;
+			return Messages.commandDoesntExist;
 		}
 
 		// If action command then get item
@@ -35,8 +37,7 @@ public class Commander {
 			// check user wrote item name
 			if (input.length < 2) {
 				log.info("Usuario no especifica item");
-				ToiletBrushHandler.getInstance().sendMessageToUser(Messages.noItem);
-				return;
+				return Messages.noItem;
 			}
 
 			String itemName = input[1].toLowerCase();
@@ -45,37 +46,37 @@ public class Commander {
 			item = Game.getInstance().getItem(itemName);
 			if (item == null) {
 				log.info("No existe el item");
-				ToiletBrushHandler.getInstance().sendMessageToUser(Messages.itemNotExist);
-				return;
+				return Messages.itemNotExist;
 			}
 		}
 
 		switch (command) {
-		case Commands.startCmd:
-			ToiletBrushHandler.getInstance().sendMessageToUser(Messages.start);
-			break;
-		case Commands.helpCmd:
-			ToiletBrushHandler.getInstance().sendMessageToUser(Messages.help);
-			break;
-		case Commands.examineCmd:
-			item.examine();
-			break;
-		case Commands.useCmd:
-			item.use();
-			break;
-		case Commands.pickCmd:
-			item.pickup();
-			break;
-		case Commands.talkCmd:
-			item.talk();
-			break;
+			case Commands.startCmd:
+				return Messages.start;
+			case Commands.helpCmd:
+				return Messages.help;
+			case Commands.examineCmd:
+				return item.examine();
+			case Commands.useCmd:
+				return item.use();
+			case Commands.pickupCmd:
+				return item.pick();
+			case Commands.talkCmd:
+				return item.talk();
+			case Commands.inventoryCmd:
+				String result = "";
+				for(Item itemInInventory : Game.getInstance().getAllItems()){
+					result += itemInInventory.getName() + "\n";
+				}
+				return result;
+			default:
+				return "";
 		}
-
 	}
 
 	private boolean isValidCommand(String command) {
 		return command.equals(Commands.startCmd) || command.equals(Commands.helpCmd) || command.equals(Commands.useCmd)
-				|| command.equals(Commands.examineCmd) || command.equals(Commands.pickCmd)
+				|| command.equals(Commands.examineCmd) || command.equals(Commands.pickupCmd) || command.equals(Commands.inventoryCmd)
 				|| command.equals(Commands.talkCmd);
 	}
 
