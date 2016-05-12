@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Manejador LongPolling para ToiletBrushBot.
  * 
- * @author AMUNOZ
+ * @author muoz & thenanox
  *
  */
 @Slf4j
