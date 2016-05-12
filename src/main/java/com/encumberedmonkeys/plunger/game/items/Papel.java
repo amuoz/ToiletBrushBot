@@ -8,20 +8,19 @@ import lombok.Getter;
 public class Papel extends Item {
 
 	@Getter
-	private final String examinePapelMsg = "Un rollo de papel sagrado, como el que usa ZEUS para cagar.";
+	private final String examinePapelMsg = gameResources.getString("papel.examinePapelMsg");
 	@Getter
-	private final String usePapelSucioMsg = "¡OOhhh si, culito limpito!\n\n¡LO LOGRASTE! HAS FINALIZADO LA VERSIÓN DE PRUEBA DE SUPER ESCOBILLA.\n\nGracias por jugar.";
+	private final String usePapelSucioMsg = gameResources.getString("papel.usePapelSucioMsg");
 	@Getter
-	private final String usePapelLimpioMsg = "¿Por qué? Mi culete ya está limpio.";
+	private final String usePapelLimpioMsg = gameResources.getString("papel.usePapelLimpioMsg");
 	@Getter
-	private final String pickPapelMsg = "Ugggh, está un poco pringado.";
+	private final String pickPapelMsg = gameResources.getString("papel.pickPapelMsg");
 
 	private boolean usado = false;
 	private boolean cogido = false;
 
 	public Papel() {
-<<<<<<< HEAD
-		this.name = "papel";
+		this.name = gameResources.getString("papel.name");
 
 		examineMsg = getExaminePapelMsg();
 		useMsg = getUsePapelSucioMsg();
@@ -31,15 +30,6 @@ public class Papel extends Item {
 	@Override
 	public void examine() {
 		ToiletBrushHandler.getInstance().sendMessageToUser(examineMsg);
-=======
-		this.nombre = gameResources.getString("papel.name");
-		this.examinar = gameResources.getString("papel.examine");
-		this.usarActivo = gameResources.getString("papel.activeUse");
-		this.usarInactivo = gameResources.getString("papel.inactiveUse");
-		this.activo = false;
-		this.coger = true;
-		this.loTengo = false;
->>>>>>> branch 'master' of https://github.com/amuoz/ToiletBrushBot
 	}
 
 	@Override

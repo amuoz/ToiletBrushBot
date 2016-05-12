@@ -24,6 +24,8 @@ public class Commander {
 		String[] input = userInput.split(" ");
 		String command = input[0].toLowerCase();
 
+		log.debug("userInput:" + userInput);
+
 		Item item = null;
 
 		if (!isValidCommand(command)) {

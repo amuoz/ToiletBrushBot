@@ -6,34 +6,23 @@ import lombok.Getter;
 
 public class Letrina extends Item {
 
-<<<<<<< HEAD
 	@Getter
-	private final String examineBeforeShitMsg = "Es el agujero de una sucia y mal oliente letrina turca.";
+	private final String examineBeforeShitMsg = gameResources.getString("letrina.examineBeforeShitMsg");
 	@Getter
-	private final String examineAfterShitMsg = "¡Sñr. Mojón está a remojo!";
+	private final String examineAfterShitMsg = gameResources.getString("letrina.examineAfterShitMsg");
 	@Getter
-	private final String useBeforeShitMsg = "No había tiempo para descubrir cómo funcionaría aquel artefacto del diablo por lo que "
-			+ "Plunger se avalanza sobre él, entaponando el agujero con su grasiento ojete.\n\n"
-			+ "Debido al estado de éxtasis en el que se encuentra comienza a cantar, inconscientemente, la canción de los zurullitos...\n\n"
-			+ "Un zurullito, dos zurullitos, tres zurullitos...repetía.";
+	private final String useBeforeShitMsg = gameResources.getString("letrina.useBeforeShitMsg");
 	@Getter
-	private final String useAfterShitMsg = "Cañerías limpias, no hay necesidad de volver a usarlo.";
+	private final String useAfterShitMsg = gameResources.getString("letrina.useAfterShitMsg");
 	@Getter
-	private final String pickLetrinaMsg = "Eso está bien donde está.";
+	private final String pickLetrinaMsg = gameResources.getString("letrina.pickLetrinaMsg");
 	@Getter
-	private final String talkLetrinaMsg = "Hooooooooooola ¿Hay alguien ahí?";
-=======
-	public Letrina() {
-		this.nombre = gameResources.getString("letrina.name");
-		this.examinar = gameResources.getString("letrina.examine");
-		this.usarActivo = gameResources.getString("letrina.activeUse");
-		this.usarInactivo = gameResources.getString("letrina.inactiveUse");
->>>>>>> branch 'master' of https://github.com/amuoz/ToiletBrushBot
+	private final String talkLetrinaMsg = gameResources.getString("letrina.talkLetrinaMsg");
 
 	private boolean usada;
 
 	public Letrina() {
-		name = "letrina";
+		name = gameResources.getString("letrina.name");
 
 		useMsg = getUseBeforeShitMsg();
 		examineMsg = getExamineBeforeShitMsg();
