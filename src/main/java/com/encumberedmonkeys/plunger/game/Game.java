@@ -16,7 +16,7 @@ public class Game {
 
 	public Game() {
 		player = new Player();
-		level = new Cabin();
+		level = new Cabin(this);
 	}
 
 	public Item getItem(String name) {

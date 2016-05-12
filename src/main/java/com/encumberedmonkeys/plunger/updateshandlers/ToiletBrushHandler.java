@@ -39,7 +39,7 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 	@Override
 	public void onUpdateReceived(Update update) {
 		Message message = update.getMessage();
-		if (message != null) {
+		if (message != null && !message.getText().isEmpty()) {
 			chatId = message.getChatId().toString();
 			sendMessageToUser(Commander.getInstance().execute(message));
 		}

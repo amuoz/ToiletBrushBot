@@ -1,6 +1,8 @@
 package com.encumberedmonkeys.plunger.game.items;
 
 import com.encumberedmonkeys.plunger.game.Game;
+import com.encumberedmonkeys.plunger.game.Player;
+import com.encumberedmonkeys.plunger.game.levels.Level;
 import com.encumberedmonkeys.plunger.services.LocalisationService;
 import lombok.Getter;
 
@@ -10,12 +12,19 @@ public class Papel extends Item {
 
 	private boolean enInventario;
 
+	private Game game;
+
 	public Papel() {
 		enInventario = false;
 	}
 
+	public Papel(Game game) {
+		this();
+		this.game = game;
+	}
+
 	@Override
-	public String getName(){
+	public String getName() {
 		return LocalisationService.getInstance().getString("papel.name");
 	}
 
@@ -28,10 +37,10 @@ public class Papel extends Item {
 	public String use() {
 		if (enInventario) {
 
-			Letrina letrina = (Letrina) Game.getInstance().getItem(LocalisationService.getInstance().getString("letrina.name"));
+			Letrina letrina = (Letrina) game.getItem(LocalisationService.getInstance().getString("letrina.name"));
 			// si hemos cagado nos limpiamos
 			if (letrina.isUsada()) {
-				Game.getInstance().getPlayer().getInventory().remove(this);
+				game.getPlayer().getInventory().remove(this);
 				return LocalisationService.getInstance().getString("papel.usePapelCuloSucioMsg");
 			} else {
 				return LocalisationService.getInstance().getString("papel.usePapelCuloLimpioMsg");
@@ -47,9 +56,9 @@ public class Papel extends Item {
 		if (!enInventario) {
 			// insertar en el invetario
 			enInventario = true;
-			Game.getInstance().getPlayer().getInventory().add(this);
+			game.getPlayer().getInventory().add(this);
 			// quitar del level
-			Game.getInstance().getLevel().getObjects().remove(this);
+			game.getLevel().getObjects().remove(this);
 
 			return LocalisationService.getInstance().getString("papel.pickPapelMsg");
 		}
