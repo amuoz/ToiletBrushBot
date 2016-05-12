@@ -1,7 +1,7 @@
 package com.encumberedmonkeys.plunger.updateshandlers;
 
 import com.encumberedmonkeys.plunger.BotConfig;
-import com.encumberedmonkeys.plunger.game.Commander;
+import com.encumberedmonkeys.plunger.Commander;
 import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.TelegramApiException;
 import org.telegram.telegrambots.api.methods.SendMessage;
@@ -39,9 +39,9 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 	@Override
 	public void onUpdateReceived(Update update) {
 		Message message = update.getMessage();
-		if (message != null && message.hasText()) {
+		if (message != null) {
 			chatId = message.getChatId().toString();
-			sendMessageToUser(Commander.getInstance().execute(message.getText()));
+			sendMessageToUser(Commander.getInstance().execute(message));
 		}
 	}
 

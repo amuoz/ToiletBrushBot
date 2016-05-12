@@ -1,14 +1,20 @@
-package com.encumberedmonkeys.plunger.game;
+package com.encumberedmonkeys.plunger;
 
-import com.encumberedmonkeys.plunger.Commands;
+import com.encumberedmonkeys.plunger.game.Game;
+import com.encumberedmonkeys.plunger.game.Messages;
 import com.encumberedmonkeys.plunger.game.items.Item;
 import com.encumberedmonkeys.plunger.services.LocalisationService;
 import lombok.extern.slf4j.Slf4j;
+import org.telegram.telegrambots.api.objects.Message;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 public class Commander {
 
-	public static final Commander COMMANDER = new Commander();
+	private static final Commander COMMANDER = new Commander();
+	private static final Map<Integer, Game> games = new HashMap<>();
 
 	public static Commander getInstance() {
 		return COMMANDER;
@@ -17,8 +23,18 @@ public class Commander {
 	private Commander() {
 	}
 
-	public String execute(String userInput) {
+	private Game obtainGame(Integer gameId) {
+		Game game = games.get(gameId);
+		if(game == null) {
+			game = new Game();
+			games.put(gameId, game);
+		}
+		return game;
+	}
 
+	public String execute(Message message) {
+		Game game = obtainGame(message.getFrom().getId());
+		String userInput = message.getText();
 		// input example: use letrina
 		String[] input = userInput.split(" ");
 		String command = input[0].toLowerCase();
@@ -54,7 +70,7 @@ public class Commander {
 			String itemName = object.toLowerCase();
 
 			// check if item exist
-			item = Game.getInstance().getItem(itemName);
+			item = game.getItem(itemName);
 			if (item == null) {
 				log.info("No existe el item");
 				return Messages.itemNotExist();
@@ -78,7 +94,7 @@ public class Commander {
 				return item.talk();
 			case Commands.inventoryCmd:
 				String result = "";
-				for(Item itemInInventory : Game.getInstance().getAllItems()){
+				for(Item itemInInventory : game.getAllItems()){
 					result += itemInInventory.getName() + "\n";
 				}
 				return result;
