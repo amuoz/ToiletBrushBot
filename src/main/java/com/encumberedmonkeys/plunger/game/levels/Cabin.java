@@ -5,11 +5,14 @@ import com.encumberedmonkeys.plunger.game.items.Papel;
 
 import java.util.ArrayList;
 
-public class Cabin extends Level{
-    public Cabin(){
-        id = "Cabin";
-        if(objects == null) objects = new ArrayList<>();
-        objects.add(new Papel());
-        objects.add(new Letrina());
-    }
+public class Cabin extends Level {
+	public Cabin() {
+		id = "Cabin";
+		if (objects == null)
+			objects = new ArrayList<>();
+		Letrina letrina = new Letrina();
+		objects.add(letrina);
+		objects.add(new Papel(letrina));
+
+	}
 }

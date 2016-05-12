@@ -2,6 +2,8 @@ package com.encumberedmonkeys.plunger.game;
 
 import com.encumberedmonkeys.plunger.Commands;
 import com.encumberedmonkeys.plunger.game.items.Item;
+import com.encumberedmonkeys.plunger.updateshandlers.ToiletBrushHandler;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

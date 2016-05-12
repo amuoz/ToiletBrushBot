@@ -8,61 +8,43 @@ import java.util.Random;
 
 public class Papel extends Item {
 
-	@Getter
-	private final String name = LocalisationService.getInstance().getString("papel.name");
-	@Getter
-	private final String letrinaName = LocalisationService.getInstance().getString("letrina.name");
-	@Getter
-	private final String examinePapelMsg = LocalisationService.getInstance().getString("papel.examinePapelMsg");
-	@Getter
-	private final String usePapelCuloSucioMsg = LocalisationService.getInstance().getString("papel.usePapelCuloSucioMsg");
-	@Getter
-	private final String usePapelCuloLimpioMsg = LocalisationService.getInstance().getString("papel.usePapelCuloLimpioMsg");
-	@Getter
-	private final String usePapelNoInventarioMsg = LocalisationService.getInstance().getString("papel.usePapelNoInventarioMsg");
-	@Getter
-	private final String pickPapelMsg = LocalisationService.getInstance().getString("papel.pickPapelMsg");
-	@Getter
-	private final String pickPapelNoMsg = LocalisationService.getInstance().getString("papel.pickPapelNoMsg");
-	@Getter
-	private final String talk1Msg = LocalisationService.getInstance().getString("papel.talk1Msg");
-	@Getter
-	private final String talk2Msg = LocalisationService.getInstance().getString("papel.talk2Msg");
-	@Getter
-	private final String talk3Msg = LocalisationService.getInstance().getString("papel.talk3Msg");
-	@Getter
-	private final String talk4Msg = LocalisationService.getInstance().getString("papel.talk4Msg");
-	@Getter
-	private final String talk5Msg = LocalisationService.getInstance().getString("papel.talk5Msg");
-	@Getter
-	private final String talkNoMsg = LocalisationService.getInstance().getString("papel.talkNoMsg");
-
 	private boolean enInventario;
+
+	private Letrina letrina;
 
 	public Papel() {
 		enInventario = false;
 	}
 
+	public Papel(Letrina letrina) {
+		this();
+		this.letrina = letrina;
+	}
+
+	@Override
+	public String getName(){
+		return LocalisationService.getInstance().getString("papel.name");
+	}
+
 	@Override
 	public String examine() {
-		return getExaminePapelMsg();
+		return LocalisationService.getInstance().getString("papel.examinePapelMsg");
 	}
 
 	@Override
 	public String use() {
 		if (enInventario) {
 
-			Letrina letrina = (Letrina) Game.getInstance().getItem(letrinaName);
 			// si hemos cagado nos limpiamos
 			if (letrina.isUsada()) {
 				Game.getInstance().getPlayer().getInventory().remove(this);
-				return getUsePapelCuloSucioMsg();
+				return LocalisationService.getInstance().getString("papel.usePapelCuloSucioMsg");
 			} else {
-				return getUsePapelCuloLimpioMsg();
+				return LocalisationService.getInstance().getString("papel.usePapelCuloLimpioMsg");
 			}
 
 		} else {
-			return getUsePapelNoInventarioMsg();
+			return LocalisationService.getInstance().getString("papel.usePapelNoInventarioMsg");
 		}
 	}
 
@@ -75,9 +57,9 @@ public class Papel extends Item {
 			// quitar del level
 			Game.getInstance().getLevel().getObjects().remove(this);
 
-			return getPickPapelMsg();
+			return LocalisationService.getInstance().getString("papel.pickPapelMsg");
 		}
-		return getPickPapelNoMsg();
+		return LocalisationService.getInstance().getString("papel.pickPapelNoMsg");
 
 	}
 
@@ -93,17 +75,17 @@ public class Papel extends Item {
 		Integer result = rand.nextInt(max - min + 1) + min;
 		switch (result) {
 		case 1:
-			return getTalk1Msg();
+			return LocalisationService.getInstance().getString("papel.talk1Msg");
 		case 2:
-			return getTalk2Msg();
+			return LocalisationService.getInstance().getString("papel.talk2Msg");
 		case 3:
-			return getTalk3Msg();
+			return LocalisationService.getInstance().getString("papel.talk3Msg");
 		case 4:
-			return getTalk4Msg();
+			return LocalisationService.getInstance().getString("papel.talk4Msg");
 		case 5:
-			return getTalk5Msg();
+			return LocalisationService.getInstance().getString("papel.talk5Msg");
 		default:
-			return getTalkNoMsg();
+			return LocalisationService.getInstance().getString("papel.talkNoMsg");
 		}
 	}
 
