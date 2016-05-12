@@ -6,6 +6,7 @@ import lombok.Getter;
 
 public class Letrina extends Item {
 
+<<<<<<< HEAD
 	@Getter
 	private final String examineBeforeShitMsg = "Es el agujero de una sucia y mal oliente letrina turca.";
 	@Getter
@@ -21,6 +22,13 @@ public class Letrina extends Item {
 	private final String pickLetrinaMsg = "Eso está bien donde está.";
 	@Getter
 	private final String talkLetrinaMsg = "Hooooooooooola ¿Hay alguien ahí?";
+=======
+	public Letrina() {
+		this.nombre = gameResources.getString("letrina.name");
+		this.examinar = gameResources.getString("letrina.examine");
+		this.usarActivo = gameResources.getString("letrina.activeUse");
+		this.usarInactivo = gameResources.getString("letrina.inactiveUse");
+>>>>>>> branch 'master' of https://github.com/amuoz/ToiletBrushBot
 
 	private boolean usada;
 

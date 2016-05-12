@@ -20,6 +20,7 @@ public class Papel extends Item {
 	private boolean cogido = false;
 
 	public Papel() {
+<<<<<<< HEAD
 		this.name = "papel";
 
 		examineMsg = getExaminePapelMsg();
@@ -30,6 +31,15 @@ public class Papel extends Item {
 	@Override
 	public void examine() {
 		ToiletBrushHandler.getInstance().sendMessageToUser(examineMsg);
+=======
+		this.nombre = gameResources.getString("papel.name");
+		this.examinar = gameResources.getString("papel.examine");
+		this.usarActivo = gameResources.getString("papel.activeUse");
+		this.usarInactivo = gameResources.getString("papel.inactiveUse");
+		this.activo = false;
+		this.coger = true;
+		this.loTengo = false;
+>>>>>>> branch 'master' of https://github.com/amuoz/ToiletBrushBot
 	}
 
 	@Override
