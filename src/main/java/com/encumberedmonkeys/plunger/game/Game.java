@@ -9,20 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-
-	public static final Game GAME = new Game();
-
-	public static Game getInstance() {
-		return GAME;
-	}
-
 	@Getter
 	private Player player;
-
 	@Getter
 	private Level level;
 
-	private Game() {
+	public Game() {
 		player = new Player();
 		level = new Cabin();
 	}
