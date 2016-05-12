@@ -1,16 +1,15 @@
 
 package com.encumberedmonkeys.plunger;
 
+import com.encumberedmonkeys.plunger.updateshandlers.ToiletBrushHandler;
+import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.TelegramApiException;
 import org.telegram.telegrambots.TelegramBotsApi;
 
-import com.encumberedmonkeys.plunger.updateshandlers.ToiletBrushHandler;
-
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * @author muoz & thenanox
- * @version 0.1 Clase principal registrar el bot.
+ * @version 0.1
+ * Clase principal registrar el bot.
  */
 @Slf4j
 public class Main {
