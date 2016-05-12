@@ -19,7 +19,6 @@ public class Letrina extends Item {
 	private final String useAfterShitMsg = "Cañerías limpias, no hay necesidad de volver a usarlo.";
 	@Getter
 	private final String pickLetrinaMsg = "Eso está bien donde está.";
-
 	@Getter
 	private final String talkLetrinaMsg = "Hooooooooooola ¿Hay alguien ahí?";
 

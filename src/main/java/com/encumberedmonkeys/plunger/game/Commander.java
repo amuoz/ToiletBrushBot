@@ -15,6 +15,9 @@ public class Commander {
 		return COMMANDER;
 	}
 
+	private Commander() {
+	}
+
 	public void execute(String userInput) {
 
 		// input example: use letrina
@@ -64,7 +67,7 @@ public class Commander {
 			item.use();
 			break;
 		case Commands.pickCmd:
-			item.pickup();
+			item.pick();
 			break;
 		case Commands.talkCmd:
 			item.talk();

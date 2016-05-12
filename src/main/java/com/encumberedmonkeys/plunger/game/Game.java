@@ -4,6 +4,8 @@ import com.encumberedmonkeys.plunger.game.items.Item;
 import com.encumberedmonkeys.plunger.game.levels.Cabin;
 import com.encumberedmonkeys.plunger.game.levels.Level;
 
+import lombok.Getter;
+
 public class Game {
 
 	public static final Game GAME = new Game();
@@ -12,6 +14,7 @@ public class Game {
 		return GAME;
 	}
 
+	@Getter
 	private Player player;
 
 	private Level level;
@@ -23,7 +26,7 @@ public class Game {
 
 	public Item getItem(String name) {
 		for (Item object : level.getObjects()) {
-			if (object.getNombre().equals(name)) {
+			if (object.getName().equals(name)) {
 				return object;
 			}
 		}

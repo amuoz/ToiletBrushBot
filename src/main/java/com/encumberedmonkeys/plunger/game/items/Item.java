@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public abstract class Item {
+
 	protected String name; // identificador único del objeto
 
 	protected String examineMsg;

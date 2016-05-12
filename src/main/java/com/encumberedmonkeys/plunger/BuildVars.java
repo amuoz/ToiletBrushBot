@@ -1,7 +1,7 @@
 package com.encumberedmonkeys.plunger;
 
 /**
- * @author Ruben Bermudez
+ * @author muoz & thenanox
  * @version 1.0
  * Custom build vars
  */
