@@ -1,41 +1,41 @@
 package com.encumberedmonkeys.plunger.game.items;
 
-import java.util.Random;
-
 import com.encumberedmonkeys.plunger.game.Game;
-
+import com.encumberedmonkeys.plunger.services.LocalisationService;
 import lombok.Getter;
+
+import java.util.Random;
 
 public class Papel extends Item {
 
 	@Getter
-	private final String name = gameResources.getString("papel.name");
+	private final String name = LocalisationService.getInstance().getString("papel.name");
 	@Getter
-	private final String letrinaName = gameResources.getString("letrina.name");
+	private final String letrinaName = LocalisationService.getInstance().getString("letrina.name");
 	@Getter
-	private final String examinePapelMsg = gameResources.getString("papel.examinePapelMsg");
+	private final String examinePapelMsg = LocalisationService.getInstance().getString("papel.examinePapelMsg");
 	@Getter
-	private final String usePapelCuloSucioMsg = gameResources.getString("papel.usePapelCuloSucioMsg");
+	private final String usePapelCuloSucioMsg = LocalisationService.getInstance().getString("papel.usePapelCuloSucioMsg");
 	@Getter
-	private final String usePapelCuloLimpioMsg = gameResources.getString("papel.usePapelCuloLimpioMsg");
+	private final String usePapelCuloLimpioMsg = LocalisationService.getInstance().getString("papel.usePapelCuloLimpioMsg");
 	@Getter
-	private final String usePapelNoInventarioMsg = gameResources.getString("papel.usePapelNoInventarioMsg");
+	private final String usePapelNoInventarioMsg = LocalisationService.getInstance().getString("papel.usePapelNoInventarioMsg");
 	@Getter
-	private final String pickPapelMsg = gameResources.getString("papel.pickPapelMsg");
+	private final String pickPapelMsg = LocalisationService.getInstance().getString("papel.pickPapelMsg");
 	@Getter
-	private final String pickPapelNoMsg = gameResources.getString("papel.pickPapelNoMsg");
+	private final String pickPapelNoMsg = LocalisationService.getInstance().getString("papel.pickPapelNoMsg");
 	@Getter
-	private final String talk1Msg = gameResources.getString("papel.talk1Msg");
+	private final String talk1Msg = LocalisationService.getInstance().getString("papel.talk1Msg");
 	@Getter
-	private final String talk2Msg = gameResources.getString("papel.talk2Msg");
+	private final String talk2Msg = LocalisationService.getInstance().getString("papel.talk2Msg");
 	@Getter
-	private final String talk3Msg = gameResources.getString("papel.talk3Msg");
+	private final String talk3Msg = LocalisationService.getInstance().getString("papel.talk3Msg");
 	@Getter
-	private final String talk4Msg = gameResources.getString("papel.talk4Msg");
+	private final String talk4Msg = LocalisationService.getInstance().getString("papel.talk4Msg");
 	@Getter
-	private final String talk5Msg = gameResources.getString("papel.talk5Msg");
+	private final String talk5Msg = LocalisationService.getInstance().getString("papel.talk5Msg");
 	@Getter
-	private final String talkNoMsg = gameResources.getString("papel.talkNoMsg");
+	private final String talkNoMsg = LocalisationService.getInstance().getString("papel.talkNoMsg");
 
 	private boolean enInventario;
 

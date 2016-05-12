@@ -1,8 +1,8 @@
 package com.encumberedmonkeys.plunger.game.levels;
 
-import java.util.List;
-
 import com.encumberedmonkeys.plunger.game.items.Item;
+
+import java.util.List;
 
 public abstract class Level {
     protected String id;

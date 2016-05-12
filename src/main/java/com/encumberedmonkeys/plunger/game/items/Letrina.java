@@ -1,23 +1,24 @@
 package com.encumberedmonkeys.plunger.game.items;
 
+import com.encumberedmonkeys.plunger.services.LocalisationService;
 import lombok.Getter;
 
 public class Letrina extends Item {
 
 	@Getter
-	private final String name = gameResources.getString("letrina.name");
+	private final String name = LocalisationService.getInstance().getString("letrina.name");
 	@Getter
-	private final String examineBeforeShitMsg = gameResources.getString("letrina.examineBeforeShitMsg");
+	private final String examineBeforeShitMsg = LocalisationService.getInstance().getString("letrina.examineBeforeShitMsg");
 	@Getter
-	private final String examineAfterShitMsg = gameResources.getString("letrina.examineAfterShitMsg");
+	private final String examineAfterShitMsg = LocalisationService.getInstance().getString("letrina.examineAfterShitMsg");
 	@Getter
-	private final String useBeforeShitMsg = gameResources.getString("letrina.useBeforeShitMsg");
+	private final String useBeforeShitMsg = LocalisationService.getInstance().getString("letrina.useBeforeShitMsg");
 	@Getter
-	private final String useAfterShitMsg = gameResources.getString("letrina.useAfterShitMsg");
+	private final String useAfterShitMsg = LocalisationService.getInstance().getString("letrina.useAfterShitMsg");
 	@Getter
-	private final String pickLetrinaMsg = gameResources.getString("letrina.pickLetrinaMsg");
+	private final String pickLetrinaMsg = LocalisationService.getInstance().getString("letrina.pickLetrinaMsg");
 	@Getter
-	private final String talkLetrinaMsg = gameResources.getString("letrina.talkLetrinaMsg");
+	private final String talkLetrinaMsg = LocalisationService.getInstance().getString("letrina.talkLetrinaMsg");
 
 	@Getter
 	private boolean usada;

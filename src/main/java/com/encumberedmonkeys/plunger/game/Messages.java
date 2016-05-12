@@ -1,27 +1,12 @@
 package com.encumberedmonkeys.plunger.game;
 
-import com.encumberedmonkeys.plunger.Commands;
+import com.encumberedmonkeys.plunger.services.LocalisationService;
 
 public class Messages {
-
-	public static final String help = "Usa este bot para jugar a la aventura gráfica de la super escobilla.\n\n"
-			+ "Puedes utilizar los siguientes comandos de telegram:\n" + Commands.startCmd + " : empezar a jugar\n"
-			+ Commands.helpCmd + " : mostrar ayuda\n\n"
-			+ "Para ayudar a nuestro gordito amigo Plunger en su aventura debes utilizar una acción seguida de un objeto.\n"
-			+ "Por ejemplo: " + Commands.useCmd + " trompeta\n\n" + "Cuentas con las siguientes acciones:\n\n"
-			+ Commands.pickCmd + " : coger un objeto\n" + Commands.examineCmd + " : examinar algo\n" + Commands.talkCmd
-			+ " : hablar con\n" + Commands.useCmd + " : usar un objeto";
-
-	public static final String start = "Plunger se encuentra frente a la gran caseta <b>letrina</b> del campamento.\n"
-			+ "Nunca la había imaginado así de enorme, perdiéndose en el estrellado cielo.\n\n"
-			+ "Está a punto de dar media vuelta, pero no aguanta más ¡se está cagando!\n\n"
-			+ "Con un arrebato se introduce en la caseta y cierra la puerta a toda ostia "
-			+ "echando el pestillo de aquella manera por el ansia de la cagada.\n\n"
-			+ "Al darse al vuelta en busca de la taza de váter que le salvará la vida queda estupefacto al observar aquel agujero asqueroso y mal oliente.\n\n"
-			+ "Se trata de una <b>letrina</b> turca con <b>papel</b> mojado en el suelo.";
-
-	public static final String noItem = "Debes indicar el nombre de un objeto.";
-	public static final String commandNotExist = "El comando indicado no existe.";
-	public static final String itemNotExist = "El objeto indicado no existe.";
-
+	public static String help = LocalisationService.getInstance().getString("command.help");
+	public static String start = LocalisationService.getInstance().getString("command.start");
+	public static String language = LocalisationService.getInstance().getString("command.language");
+	public static String noItem = LocalisationService.getInstance().getString("command.noItem");
+	public static String commandDoesntExist = LocalisationService.getInstance().getString("command.commandDoesntExist");
+	public static String itemNotExist = LocalisationService.getInstance().getString("command.itemDoesntExist");
 }
