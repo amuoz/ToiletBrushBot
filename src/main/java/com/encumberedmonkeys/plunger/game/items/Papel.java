@@ -1,12 +1,9 @@
 package com.encumberedmonkeys.plunger.game.items;
 
-import com.encumberedmonkeys.plunger.game.Game;
-import com.encumberedmonkeys.plunger.game.Player;
-import com.encumberedmonkeys.plunger.game.levels.Level;
-import com.encumberedmonkeys.plunger.services.LocalisationService;
-import lombok.Getter;
-
 import java.util.Random;
+
+import com.encumberedmonkeys.plunger.game.Game;
+import com.encumberedmonkeys.plunger.services.LocalisationService;
 
 public class Papel extends Item {
 
@@ -34,20 +31,20 @@ public class Papel extends Item {
 	}
 
 	@Override
-	public String use() {
+	public void use() {
 		if (enInventario) {
 
 			Letrina letrina = (Letrina) game.getItem(LocalisationService.getInstance().getString("letrina.name"));
 			// si hemos cagado nos limpiamos
 			if (letrina.isUsada()) {
 				game.getPlayer().getInventory().remove(this);
-				return LocalisationService.getInstance().getString("papel.usePapelCuloSucioMsg");
+				sendMessageToUser(LocalisationService.getInstance().getString("papel.usePapelCuloSucioMsg"));
 			} else {
-				return LocalisationService.getInstance().getString("papel.usePapelCuloLimpioMsg");
+				sendMessageToUser(LocalisationService.getInstance().getString("papel.usePapelCuloLimpioMsg"));
 			}
 
 		} else {
-			return LocalisationService.getInstance().getString("papel.usePapelNoInventarioMsg");
+			sendMessageToUser(LocalisationService.getInstance().getString("papel.usePapelNoInventarioMsg"));
 		}
 	}
 

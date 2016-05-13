@@ -1,6 +1,7 @@
 package com.encumberedmonkeys.plunger.game.items;
 
 import com.encumberedmonkeys.plunger.services.LocalisationService;
+
 import lombok.Getter;
 
 public class Letrina extends Item {
@@ -12,7 +13,7 @@ public class Letrina extends Item {
 	}
 
 	@Override
-	public String getName(){
+	public String getName() {
 		return LocalisationService.getInstance().getString("letrina.name");
 	}
 
@@ -25,18 +26,20 @@ public class Letrina extends Item {
 	}
 
 	@Override
-	public String use() {
+	public void use() {
 		if (!usada) {
 			usada = true;
-			return LocalisationService.getInstance().getString("letrina.useBeforeShitMsg");
+			sendKeyboardMessageToUser(LocalisationService.getInstance().getString("letrina.useBeforeShitMsg"));
+		} else {
+			sendMessageToUser(LocalisationService.getInstance().getString("letrina.useAfterShitMsg"));
 		}
-		return LocalisationService.getInstance().getString("letrina.useAfterShitMsg");
 	}
 
 	@Override
 	public String pick() {
 		return LocalisationService.getInstance().getString("letrina.pickLetrinaMsg");
 	}
+
 	@Override
 	public String talk() {
 		return LocalisationService.getInstance().getString("letrina.talkLetrinaMsg");
