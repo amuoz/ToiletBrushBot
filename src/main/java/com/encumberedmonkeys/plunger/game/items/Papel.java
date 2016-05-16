@@ -1,53 +1,44 @@
 package com.encumberedmonkeys.plunger.game.items;
 
-import com.encumberedmonkeys.plunger.game.Game;
-import com.encumberedmonkeys.plunger.game.Player;
-import com.encumberedmonkeys.plunger.game.levels.Level;
-import com.encumberedmonkeys.plunger.services.LocalisationService;
-import lombok.Getter;
-
 import java.util.Random;
+
+import com.encumberedmonkeys.plunger.game.Game;
 
 public class Papel extends Item {
 
 	private boolean enInventario;
 
-	private Game game;
-
-	public Papel() {
-		enInventario = false;
-	}
-
 	public Papel(Game game) {
-		this();
-		this.game = game;
+		super(game);
+		this.catchable = true;
+		this.enInventario = false;
 	}
 
 	@Override
 	public String getName() {
-		return LocalisationService.getInstance().getString("papel.name");
+		return getMsg("papel.name");
 	}
 
 	@Override
-	public String examine() {
-		return LocalisationService.getInstance().getString("papel.examinePapelMsg");
+	public void examine() {
+		sendMessageToUser(getMsg("papel.examinePapelMsg"));
 	}
 
 	@Override
-	public String use() {
+	public void use() {
 		if (enInventario) {
 
-			Letrina letrina = (Letrina) game.getItem(LocalisationService.getInstance().getString("letrina.name"));
+			Letrina letrina = (Letrina) game.getItem(getMsg("letrina.name"));
 			// si hemos cagado nos limpiamos
 			if (letrina.isUsada()) {
 				game.getPlayer().getInventory().remove(this);
-				return LocalisationService.getInstance().getString("papel.usePapelCuloSucioMsg");
+				sendMessageToUser(getMsg("papel.usePapelCuloSucioMsg"));
 			} else {
-				return LocalisationService.getInstance().getString("papel.usePapelCuloLimpioMsg");
+				sendMessageToUser(getMsg("papel.usePapelCuloLimpioMsg"));
 			}
 
 		} else {
-			return LocalisationService.getInstance().getString("papel.usePapelNoInventarioMsg");
+			sendMessageToUser(getMsg("papel.usePapelNoInventarioMsg"));
 		}
 	}
 
@@ -60,9 +51,9 @@ public class Papel extends Item {
 			// quitar del level
 			game.getLevel().getObjects().remove(this);
 
-			return LocalisationService.getInstance().getString("papel.pickPapelMsg");
+			return getMsg("papel.pickPapelMsg");
 		}
-		return LocalisationService.getInstance().getString("papel.pickPapelNoMsg");
+		return getMsg("papel.pickPapelNoMsg");
 
 	}
 
@@ -78,18 +69,24 @@ public class Papel extends Item {
 		Integer result = rand.nextInt(max - min + 1) + min;
 		switch (result) {
 		case 1:
-			return LocalisationService.getInstance().getString("papel.talk1Msg");
+			return getMsg("papel.talk1Msg");
 		case 2:
-			return LocalisationService.getInstance().getString("papel.talk2Msg");
+			return getMsg("papel.talk2Msg");
 		case 3:
-			return LocalisationService.getInstance().getString("papel.talk3Msg");
+			return getMsg("papel.talk3Msg");
 		case 4:
-			return LocalisationService.getInstance().getString("papel.talk4Msg");
+			return getMsg("papel.talk4Msg");
 		case 5:
-			return LocalisationService.getInstance().getString("papel.talk5Msg");
+			return getMsg("papel.talk5Msg");
 		default:
-			return LocalisationService.getInstance().getString("papel.talkNoMsg");
+			return getMsg("papel.talkNoMsg");
 		}
+	}
+
+	@Override
+	public void use(Item item) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

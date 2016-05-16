@@ -14,4 +14,5 @@ public class Commands {
 	public static final String pickupCmd = "coger";
 	public static final String talkCmd = "hablar";
 	public static final String inventoryCmd = "inventario";
+	public static final String shitCmd = "cagar";
 }

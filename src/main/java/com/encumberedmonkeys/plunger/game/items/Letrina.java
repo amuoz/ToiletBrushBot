@@ -1,45 +1,55 @@
 package com.encumberedmonkeys.plunger.game.items;
 
-import com.encumberedmonkeys.plunger.services.LocalisationService;
+import com.encumberedmonkeys.plunger.game.Game;
+
 import lombok.Getter;
 
 public class Letrina extends Item {
 	@Getter
 	private boolean usada;
 
-	public Letrina() {
+	public Letrina(Game game) {
+		super(game);
 		usada = false;
 	}
 
 	@Override
-	public String getName(){
-		return LocalisationService.getInstance().getString("letrina.name");
+	public String getName() {
+		return getMsg("letrina.name");
 	}
 
 	@Override
-	public String examine() {
+	public void examine() {
 		if (!usada) {
-			return LocalisationService.getInstance().getString("letrina.examineBeforeShitMsg");
+			sendMessageToUser(getMsg("letrina.examineBeforeShitMsg"));
 		}
-		return LocalisationService.getInstance().getString("letrina.examineAfterShitMsg");
+		sendMessageToUser(getMsg("letrina.examineAfterShitMsg"));
 	}
 
 	@Override
-	public String use() {
+	public void use() {
 		if (!usada) {
 			usada = true;
-			return LocalisationService.getInstance().getString("letrina.useBeforeShitMsg");
+			sendKeyboardMessageToUser(getMsg("letrina.useBeforeShitMsg"));
+		} else {
+			sendMessageToUser(getMsg("letrina.useAfterShitMsg"));
 		}
-		return LocalisationService.getInstance().getString("letrina.useAfterShitMsg");
 	}
 
 	@Override
 	public String pick() {
-		return LocalisationService.getInstance().getString("letrina.pickLetrinaMsg");
+		return getMsg("letrina.pickLetrinaMsg");
 	}
+
 	@Override
 	public String talk() {
-		return LocalisationService.getInstance().getString("letrina.talkLetrinaMsg");
+		return getMsg("letrina.talkLetrinaMsg");
+	}
+
+	@Override
+	public void use(Item item) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

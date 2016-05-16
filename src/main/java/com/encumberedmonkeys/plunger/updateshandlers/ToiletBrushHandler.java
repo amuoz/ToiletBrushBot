@@ -1,13 +1,21 @@
 package com.encumberedmonkeys.plunger.updateshandlers;
 
-import com.encumberedmonkeys.plunger.BotConfig;
-import com.encumberedmonkeys.plunger.Commander;
-import lombok.extern.slf4j.Slf4j;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.telegram.telegrambots.TelegramApiException;
 import org.telegram.telegrambots.api.methods.SendMessage;
+import org.telegram.telegrambots.api.methods.SendPhoto;
 import org.telegram.telegrambots.api.objects.Message;
+import org.telegram.telegrambots.api.objects.ReplyKeyboardHide;
+import org.telegram.telegrambots.api.objects.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+
+import com.encumberedmonkeys.plunger.BotConfig;
+import com.encumberedmonkeys.plunger.Commander;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Manejador LongPolling para ToiletBrushBot.
@@ -41,7 +49,7 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 		Message message = update.getMessage();
 		if (message != null && !message.getText().isEmpty()) {
 			chatId = message.getChatId().toString();
-			sendMessageToUser(Commander.getInstance().execute(message));
+			Commander.getInstance().execute(message);
 		}
 	}
 
@@ -50,6 +58,44 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 		sendMessage.setChatId(chatId);
 		sendMessage.enableMarkdown(true);
 		sendMessage.setText(text);
+		
+		ReplyKeyboardHide replyKeyboardHide = new ReplyKeyboardHide();
+		replyKeyboardHide.setHideKeyboard(true);
+		sendMessage.setReplayMarkup(replyKeyboardHide);
+		try {
+			sendMessage(sendMessage);
+		} catch (TelegramApiException e) {
+			log.error("Error in telegram API", e);
+		}
+	}
+
+	public void sendPhotoToUser(String photoId) {
+		SendPhoto sendPhoto = new SendPhoto();
+		sendPhoto.setChatId(chatId);
+		sendPhoto.setPhoto(photoId);
+		try {
+			this.sendPhoto(sendPhoto);
+		} catch (TelegramApiException e) {
+			log.error("Error in telegram API", e);
+		}
+	}
+
+	public void sendKeyboardMessageToUser(String text) {
+
+		SendMessage sendMessage = new SendMessage();
+		sendMessage.setChatId(chatId);
+		sendMessage.enableMarkdown(true);
+		sendMessage.setText(text);
+
+		List<List<String>> keyboard = new LinkedList<List<String>>();
+		List<String> fila = new LinkedList<String>();
+		fila.add("CAGAR");
+		keyboard.add(fila);
+		ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
+		replyKeyboardMarkup.setKeyboard(keyboard);
+
+		sendMessage.setReplayMarkup(replyKeyboardMarkup);
+
 		try {
 			sendMessage(sendMessage);
 		} catch (TelegramApiException e) {
