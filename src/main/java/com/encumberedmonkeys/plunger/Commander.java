@@ -48,6 +48,7 @@ public class Commander {
 		log.debug("userInput: " + userInput);
 
 		Item item = null;
+		Item item2 = null;
 
 		if (!isValidCommand(command)) {
 			// command does not exist
@@ -82,6 +83,17 @@ public class Commander {
 			}
 		}
 
+		// usar obj1 obj2
+		if (command.equals(Commands.useCmd) && (input.length > 2)) {
+			String item2Name = input[2].toLowerCase();
+			// check if item exist
+			item2 = game.getItem(item2Name);
+			if (item2 == null) {
+				log.info("No existe el segundo item");
+				sendMessageToUser(Messages.secondItemNotExist());
+			}
+		}
+
 		switch (command) {
 		case Commands.startCmd:
 			sendMessageToUser(Messages.start());
@@ -97,7 +109,11 @@ public class Commander {
 			sendMessageToUser(item.examine());
 			break;
 		case Commands.useCmd:
-			item.use();
+			if (item2 == null) {
+				item.use();
+			} else {
+				item.use(item2);
+			}
 			break;
 		case Commands.pickupCmd:
 			sendMessageToUser(item.pick());
