@@ -2,32 +2,27 @@ package com.encumberedmonkeys.plunger.game.items;
 
 import com.encumberedmonkeys.plunger.game.Game;
 
-public class Cordoneras extends Item {
+public class Manivela extends Item {
 
-	public Cordoneras(Game game) {
+	public Manivela(Game game) {
 		super(game);
-		this.catchable = true;
 	}
 
 	@Override
 	public String getName() {
-		return getMsg("cordoneras.name");
+		return getMsg("manivela.name");
 	}
 
 	@Override
 	public void examine() {
-		sendMessageToUser(getMsg("cordoneras.examine"));
-	}
-
-	@Override
-	public void use() {
-		sendMessageToUser(getMsg("item.noMsg"));
+		sendMessageToUser(getMsg("manivela.examine"));
 	}
 
 	@Override
 	public void use(Item item) {
-		// reutilizar use de escobille
-		item.use(this);
+		if (item.getName().equals(getMsg("gancho.name"))) {
+			item.use(this);
+		}
 	}
 
 	@Override

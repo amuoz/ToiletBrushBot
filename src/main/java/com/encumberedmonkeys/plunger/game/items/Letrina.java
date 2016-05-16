@@ -19,11 +19,11 @@ public class Letrina extends Item {
 	}
 
 	@Override
-	public String examine() {
+	public void examine() {
 		if (!usada) {
-			return getMsg("letrina.examineBeforeShitMsg");
+			sendMessageToUser(getMsg("letrina.examineBeforeShitMsg"));
 		}
-		return getMsg("letrina.examineAfterShitMsg");
+		sendMessageToUser(getMsg("letrina.examineAfterShitMsg"));
 	}
 
 	@Override

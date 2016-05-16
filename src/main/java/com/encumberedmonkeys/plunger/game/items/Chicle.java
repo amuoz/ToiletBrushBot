@@ -6,7 +6,8 @@ public class Chicle extends Item {
 
 	public Chicle(Game game) {
 		super(game);
-		this.catchable = true;
+		this.catchable = false;
+		this.enInventario = true;
 	}
 
 	@Override
@@ -15,8 +16,8 @@ public class Chicle extends Item {
 	}
 
 	@Override
-	public String examine() {
-		return getMsg("chicle.examine");
+	public void examine() {
+		sendMessageToUser(getMsg("chicle.examine"));
 	}
 
 	@Override

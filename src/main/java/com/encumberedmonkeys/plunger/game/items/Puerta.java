@@ -2,32 +2,30 @@ package com.encumberedmonkeys.plunger.game.items;
 
 import com.encumberedmonkeys.plunger.game.Game;
 
-public class Cordoneras extends Item {
+public class Puerta extends Item {
 
-	public Cordoneras(Game game) {
+	public Puerta(Game game) {
 		super(game);
-		this.catchable = true;
 	}
 
 	@Override
 	public String getName() {
-		return getMsg("cordoneras.name");
+		return getMsg("puerta.name");
 	}
 
 	@Override
 	public void examine() {
-		sendMessageToUser(getMsg("cordoneras.examine"));
+		sendMessageToUser(getMsg("puerta.examine"));
 	}
 
 	@Override
 	public void use() {
-		sendMessageToUser(getMsg("item.noMsg"));
+		sendMessageToUser(getMsg("puerta.use"));
 	}
 
 	@Override
 	public void use(Item item) {
-		// reutilizar use de escobille
-		item.use(this);
+		// TODO Auto-generated method stub
 	}
 
 	@Override

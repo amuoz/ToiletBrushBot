@@ -15,8 +15,8 @@ public class Escobilla extends Item {
 	}
 
 	@Override
-	public String examine() {
-		return getMsg("escobilla.examine");
+	public void examine() {
+		sendMessageToUser(getMsg("escobilla.examine"));
 	}
 
 	@Override

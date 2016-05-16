@@ -20,8 +20,8 @@ public class Papel extends Item {
 	}
 
 	@Override
-	public String examine() {
-		return getMsg("papel.examinePapelMsg");
+	public void examine() {
+		sendMessageToUser(getMsg("papel.examinePapelMsg"));
 	}
 
 	@Override

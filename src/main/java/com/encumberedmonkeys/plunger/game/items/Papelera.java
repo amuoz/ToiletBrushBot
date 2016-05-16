@@ -4,9 +4,11 @@ import com.encumberedmonkeys.plunger.game.Game;
 
 public class Papelera extends Item {
 
+	private boolean examinada;
+
 	public Papelera(Game game) {
 		super(game);
-		this.catchable = true;
+		examinada = false;
 	}
 
 	@Override
@@ -15,8 +17,19 @@ public class Papelera extends Item {
 	}
 
 	@Override
-	public String examine() {
-		return getMsg("papelera.examine");
+	public void examine() {
+		if (game.getPlayer().isAtascado()) {
+			sendMessageToUser(getMsg("papelera.examine1"));
+		} else {
+			if (!examinada) {
+				examinada = true;
+				game.getPlayer().getInventory().add(new Foto(game));
+				sendMessageToUser(getMsg("papelera.examine2"));
+			} else {
+				sendMessageToUser(getMsg("papelera.examine3"));
+			}
+
+		}
 	}
 
 	@Override

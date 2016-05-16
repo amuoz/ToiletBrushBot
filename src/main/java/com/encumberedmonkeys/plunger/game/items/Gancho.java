@@ -6,7 +6,8 @@ public class Gancho extends Item {
 
 	public Gancho(Game game) {
 		super(game);
-		this.catchable = true;
+		this.catchable = false;
+		this.enInventario = true;
 	}
 
 	@Override
@@ -15,13 +16,22 @@ public class Gancho extends Item {
 	}
 
 	@Override
-	public String examine() {
-		return getMsg("gancho.examine");
+	public void examine() {
+		sendMessageToUser(getMsg("gancho.examine"));
 	}
 
 	@Override
 	public void use(Item item) {
-		// TODO Auto-generated method stub
+		if (item.getName().equals(getMsg("manivela.name"))) {
+			// me desatasco
+			game.getPlayer().setAtascado(false);
+			
+			game.getPlayer().getInventory().remove(this);
+			game.getLevel().getObjects().remove(item);
+			sendMessageToUser(getMsg("plunger.desatascado"));
+		} else {
+			sendMessageToUser(getMsg("item.noMsg"));
+		}
 	}
 
 	@Override

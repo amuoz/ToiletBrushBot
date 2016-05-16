@@ -1,6 +1,7 @@
 package com.encumberedmonkeys.plunger;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.telegram.telegrambots.api.objects.Message;
@@ -35,6 +36,11 @@ public class Commander {
 		return game;
 	}
 
+	private void newGame(Integer gameId) {
+		Game game = new Game();
+		games.put(gameId, game);
+	}
+
 	public void execute(Message message) {
 		Game game = obtainGame(message.getFrom().getId());
 		String userInput = message.getText();
@@ -65,8 +71,8 @@ public class Commander {
 		}
 
 		// If action command then get item
-		if (!command.equals(Commands.startCmd) && !command.equals(Commands.helpCmd)
-				&& !command.equals(Commands.shitCmd)) {
+		if (!command.equals(Commands.startCmd) && !command.equals(Commands.helpCmd) && !command.equals(Commands.shitCmd)
+				&& !command.equals(Commands.inventoryCmd)) {
 			// check user wrote item name
 			if (input.length < 2) {
 				log.info("Usuario no especifica item");
@@ -96,17 +102,18 @@ public class Commander {
 
 		switch (command) {
 		case Commands.startCmd:
+			newGame(message.getFrom().getId());
 			sendMessageToUser(Messages.start());
+			sendPhotoToUser(LocalisationService.getInstance().getString("img.letrina"));
 			break;
 		case Commands.helpCmd:
 			sendMessageToUser(Messages.help());
-			sendPhotoToUser(LocalisationService.getInstance().getString("img.letrina"));
 			break;
 		case Commands.languageCmd:
 			sendMessageToUser(Messages.language());
 			break;
 		case Commands.examineCmd:
-			sendMessageToUser(item.examine());
+			item.examine();
 			break;
 		case Commands.useCmd:
 			if (item2 == null) {
@@ -123,9 +130,17 @@ public class Commander {
 			break;
 		case Commands.inventoryCmd:
 			String result = "";
-			for (Item itemInInventory : game.getAllItems()) {
-				result += itemInInventory.getName() + "\n";
+
+			List<Item> inventory = game.getPlayer().getInventory();
+			if (inventory.size() > 0) {
+				for (Item inventoryItem : inventory) {
+					result += inventoryItem.getName() + "\n";
+				}
+
+			} else {
+				result += "No hay ningún objeto en tu inventario.";
 			}
+
 			sendMessageToUser(result);
 			break;
 		case Commands.shitCmd:

@@ -18,7 +18,7 @@ public abstract class Item {
 
 	public abstract String getName();
 
-	public abstract String examine();
+	public abstract void examine();
 
 	// Por defecto preguntamos usar con qué
 	public void use() {
