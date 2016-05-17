@@ -8,8 +8,10 @@ import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
+import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboardHide;
 import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 
@@ -96,5 +98,24 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 			log.error("Error in telegram API", e);
 		}
 	}
-	
+
+	public void sendInlineKeyboardMessageToUser(String text, List<List<InlineKeyboardButton>> replies) {
+
+		SendMessage sendMessage = new SendMessage();
+		sendMessage.setChatId(chatId);
+		sendMessage.enableMarkdown(true);
+		sendMessage.setText(text);
+
+		InlineKeyboardMarkup replyInlineKeyboardMarkup = new InlineKeyboardMarkup();
+		replyInlineKeyboardMarkup.setKeyboard(replies);
+
+		sendMessage.setReplayMarkup(replyInlineKeyboardMarkup);
+
+		try {
+			sendMessage(sendMessage);
+		} catch (TelegramApiException e) {
+			log.error("Error in telegram API", e);
+		}
+	}
+
 }

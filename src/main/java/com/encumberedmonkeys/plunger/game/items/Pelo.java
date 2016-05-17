@@ -1,12 +1,13 @@
 package com.encumberedmonkeys.plunger.game.items;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 
 import com.encumberedmonkeys.plunger.game.Dialog;
 import com.encumberedmonkeys.plunger.game.Game;
-import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 
 public class Pelo extends Item {
 
@@ -16,18 +17,18 @@ public class Pelo extends Item {
 		super(game);
 
 		Dialog d1 = new Dialog();
-		d1.setPregunta("_Plunger_: ¿Quién eres?");
-		d1.setRespuesta("_Pelo_: Soy tu primer *pelo* pubertoso, soy tu pelo de adolescencia.");
+		d1.setPregunta("Plunger: ¿Quién eres?");
+		d1.setRespuesta("Pelo: Soy tu primer *pelo* pubertoso, soy tu pelo de adolescencia.");
 
 		Dialog d11 = new Dialog();
-		d11.setPregunta("_Plunger_: ¿Puedo arrancarte?");
+		d11.setPregunta("Plunger: ¿Puedo arrancarte?");
 		d11.setRespuesta(
-				"_Pelo_: Vale, pero primero te arranco yo las piernas.\n_Plunger_: Eso no suena demasiado bien...mejor lo dejamos estar.");
+				"Pelo: Vale, pero primero te arranco yo las piernas.\n_Plunger_: Eso no suena demasiado bien...mejor lo dejamos estar.");
 		d1.getConversaciones().add(d11);
 
 		Dialog d2 = new Dialog();
-		d2.setPregunta("_Plunger_: Adios Pubert.");
-		d2.setRespuesta("_Pubert_: Me encantó solo en casa, el momento del afeitado fué genial. ¡Adiós!");
+		d2.setPregunta("Plunger: Adios Pubert.");
+		d2.setRespuesta("Pubert: Me encantó solo en casa, el momento del afeitado fué genial. ¡Adiós!");
 
 		dialogs = new ArrayList<Dialog>();
 		dialogs.add(d1);
@@ -54,12 +55,27 @@ public class Pelo extends Item {
 
 	@Override
 	public void talk() {
-		List<KeyboardRow> keyboard = new ArrayList<>();
-		KeyboardRow keyrow = new KeyboardRow();
-		for(Dialog dialog: dialogs) {
-			keyrow.add(dialog.getPregunta());
+		List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
+		for (Dialog dialog : dialogs) {
+			List<InlineKeyboardButton> inlineKeyboard = new ArrayList<InlineKeyboardButton>();
+			InlineKeyboardButton inline = new InlineKeyboardButton(); 
+			inline.setText(dialog.getPregunta());
+			inline.setCallbackData("1 2 3 4 5");
+			inlineKeyboard.add(inline);
+			keyboard.add(inlineKeyboard);
 		}
-		keyboard.add(keyrow);
+		sendInlineKeyboardMessageToUser("test", keyboard);
+	}
+	
+	// normal keyboard version
+	public void talk2() {
+		List<KeyboardRow> keyboard = new ArrayList<>();
+		for (Dialog dialog : dialogs) {
+			KeyboardRow keyrow = new KeyboardRow();
+			keyrow.add(dialog.getPregunta());
+			keyboard.add(keyrow);
+		}
 		sendKeyboardMessageToUser("test", keyboard);
 	}
+	
 }
