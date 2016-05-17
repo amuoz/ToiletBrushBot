@@ -97,5 +97,5 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 			log.error("Error in telegram API", e);
 		}
 	}
-
+	
 }
