@@ -1,8 +1,7 @@
 package com.encumberedmonkeys.plunger.updateshandlers;
 
-import com.encumberedmonkeys.plunger.BotConfig;
-import com.encumberedmonkeys.plunger.commander.Commander;
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+
 import org.telegram.telegrambots.TelegramApiException;
 import org.telegram.telegrambots.api.methods.SendMessage;
 import org.telegram.telegrambots.api.methods.SendPhoto;
@@ -12,8 +11,10 @@ import org.telegram.telegrambots.api.objects.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.encumberedmonkeys.plunger.BotConfig;
+import com.encumberedmonkeys.plunger.commander.Commander;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Manejador LongPolling para ToiletBrushBot.
@@ -56,7 +57,7 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 		sendMessage.setChatId(chatId);
 		sendMessage.enableMarkdown(true);
 		sendMessage.setText(text);
-		
+
 		ReplyKeyboardHide replyKeyboardHide = new ReplyKeyboardHide();
 		replyKeyboardHide.setHideKeyboard(true);
 		sendMessage.setReplayMarkup(replyKeyboardHide);
@@ -78,17 +79,15 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 		}
 	}
 
-	public void sendKeyboardMessageToUser(String text, List<String> replies) {
+	public void sendKeyboardMessageToUser(String text, List<List<String>> replies) {
 
 		SendMessage sendMessage = new SendMessage();
 		sendMessage.setChatId(chatId);
 		sendMessage.enableMarkdown(true);
 		sendMessage.setText(text);
 
-		List<List<String>> keyboard = new ArrayList<>();
-		keyboard.add(replies);
 		ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
-		replyKeyboardMarkup.setKeyboard(keyboard);
+		replyKeyboardMarkup.setKeyboard(replies);
 
 		sendMessage.setReplayMarkup(replyKeyboardMarkup);
 

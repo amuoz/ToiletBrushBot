@@ -9,6 +9,7 @@ import com.encumberedmonkeys.plunger.game.items.Escobilla;
 import com.encumberedmonkeys.plunger.game.items.Letrina;
 import com.encumberedmonkeys.plunger.game.items.Manivela;
 import com.encumberedmonkeys.plunger.game.items.Papelera;
+import com.encumberedmonkeys.plunger.game.items.Pelo;
 import com.encumberedmonkeys.plunger.game.items.Puerta;
 
 public class Cabin extends Level {
@@ -26,5 +27,6 @@ public class Cabin extends Level {
 		objects.add(new Manivela(game));
 		objects.add(new Puerta(game));
 		objects.add(new Papelera(game));
+		objects.add(new Pelo(game));
 	}
 }

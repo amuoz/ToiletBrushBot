@@ -69,7 +69,7 @@ public class Commander {
 
 	private Action createAction(Game game, String[] input) {
 		Action action = null;
-		switch (input[0]){
+		switch (input[0].toLowerCase()){
 			case "examinar":
 				if(input.length == 2) {
 					Item first = game.getItem(input[1]);

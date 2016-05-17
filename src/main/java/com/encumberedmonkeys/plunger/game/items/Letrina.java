@@ -1,11 +1,12 @@
 package com.encumberedmonkeys.plunger.game.items;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.encumberedmonkeys.plunger.game.Game;
 
 import lombok.Getter;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Letrina extends Item {
 	@Getter
@@ -33,7 +34,9 @@ public class Letrina extends Item {
 	public void use() {
 		if (!usada) {
 			usada = true;
-			sendKeyboardMessageToUser(getMsg("letrina.useBeforeShitMsg"), "CAGAR");
+			List<List<String>> keyboard = new ArrayList<>();
+			keyboard.add(Arrays.asList("CAGAR"));
+			sendKeyboardMessageToUser(getMsg("letrina.useBeforeShitMsg"), keyboard);
 		} else {
 			sendMessageToUser(getMsg("letrina.useAfterShitMsg"));
 		}
@@ -50,5 +53,6 @@ public class Letrina extends Item {
 	}
 
 	@Override
-	public void use(Item item) {}
+	public void use(Item item) {
+	}
 }
