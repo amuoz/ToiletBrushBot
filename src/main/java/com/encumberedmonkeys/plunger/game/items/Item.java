@@ -4,6 +4,10 @@ import com.encumberedmonkeys.plunger.game.Game;
 import com.encumberedmonkeys.plunger.services.LocalisationService;
 import com.encumberedmonkeys.plunger.updateshandlers.ToiletBrushHandler;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public abstract class Item {
 
 	protected Game game;
@@ -20,16 +24,10 @@ public abstract class Item {
 
 	public abstract void examine();
 
-	// Por defecto preguntamos usar con qué
 	public void use() {
 		sendMessageToUser(getMsg("item.useWithMsg"));
 	}
 
-	/**
-	 * Usar con otro objeto (mergear)
-	 * 
-	 * @param item
-	 */
 	public abstract void use(Item item);
 
 	public abstract String talk();
@@ -79,8 +77,8 @@ public abstract class Item {
 		ToiletBrushHandler.getInstance().sendPhotoToUser(photoId);
 	}
 
-	public void sendKeyboardMessageToUser(String text) {
-		ToiletBrushHandler.getInstance().sendKeyboardMessageToUser(text);
+	public void sendKeyboardMessageToUser(String text, String... replies) {
+		ToiletBrushHandler.getInstance().sendKeyboardMessageToUser(text, new ArrayList<>(Arrays.asList(replies)));
 	}
 
 }

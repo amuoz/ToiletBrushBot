@@ -4,6 +4,9 @@ import com.encumberedmonkeys.plunger.game.Game;
 
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Letrina extends Item {
 	@Getter
 	private boolean usada;
@@ -30,7 +33,7 @@ public class Letrina extends Item {
 	public void use() {
 		if (!usada) {
 			usada = true;
-			sendKeyboardMessageToUser(getMsg("letrina.useBeforeShitMsg"));
+			sendKeyboardMessageToUser(getMsg("letrina.useBeforeShitMsg"), "CAGAR");
 		} else {
 			sendMessageToUser(getMsg("letrina.useAfterShitMsg"));
 		}

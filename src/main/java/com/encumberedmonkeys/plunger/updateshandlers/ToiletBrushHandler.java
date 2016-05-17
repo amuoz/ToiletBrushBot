@@ -1,8 +1,8 @@
 package com.encumberedmonkeys.plunger.updateshandlers;
 
-import java.util.LinkedList;
-import java.util.List;
-
+import com.encumberedmonkeys.plunger.BotConfig;
+import com.encumberedmonkeys.plunger.Commander;
+import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.TelegramApiException;
 import org.telegram.telegrambots.api.methods.SendMessage;
 import org.telegram.telegrambots.api.methods.SendPhoto;
@@ -12,10 +12,8 @@ import org.telegram.telegrambots.api.objects.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 
-import com.encumberedmonkeys.plunger.BotConfig;
-import com.encumberedmonkeys.plunger.Commander;
-
-import lombok.extern.slf4j.Slf4j;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Manejador LongPolling para ToiletBrushBot.
@@ -80,17 +78,15 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 		}
 	}
 
-	public void sendKeyboardMessageToUser(String text) {
+	public void sendKeyboardMessageToUser(String text, List<String> replies) {
 
 		SendMessage sendMessage = new SendMessage();
 		sendMessage.setChatId(chatId);
 		sendMessage.enableMarkdown(true);
 		sendMessage.setText(text);
 
-		List<List<String>> keyboard = new LinkedList<List<String>>();
-		List<String> fila = new LinkedList<String>();
-		fila.add("CAGAR");
-		keyboard.add(fila);
+		List<List<String>> keyboard = new ArrayList<>();
+		keyboard.add(replies);
 		ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
 		replyKeyboardMarkup.setKeyboard(keyboard);
 
