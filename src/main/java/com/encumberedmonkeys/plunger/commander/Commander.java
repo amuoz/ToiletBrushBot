@@ -61,13 +61,8 @@ public class Commander {
 				}
 				break;
 			default:
-				Action action;
-				if((action = createAction(game, input)) == null){
-					log.info("El comando no existe: ", message.getText());
-					sendMessageToUser(Messages.commandDoesntExist());
-					break;
-				}
-				ActionHandler.getInstance().handle(action);
+				Action action = createAction(game, input);
+				if(action != null) ActionHandler.getInstance().handle(action);
 				break;
 		}
 	}
@@ -152,6 +147,10 @@ public class Commander {
 				if(input.length == 1) {
 					action = new Shit(game);
 				}
+				break;
+			default:
+				log.info("El comando no existe: ", input[0]);
+				sendMessageToUser(Messages.commandDoesntExist());
 				break;
 		}
 		return action;
