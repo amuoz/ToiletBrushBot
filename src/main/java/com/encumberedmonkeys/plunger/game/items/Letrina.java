@@ -40,19 +40,15 @@ public class Letrina extends Item {
 	}
 
 	@Override
-	public String pick() {
-		return getMsg("letrina.pickLetrinaMsg");
+	public void pick() {
+		sendMessageToUser(getMsg("letrina.pickLetrinaMsg"));
 	}
 
 	@Override
-	public String talk() {
-		return getMsg("letrina.talkLetrinaMsg");
+	public void talk() {
+		sendMessageToUser(getMsg("letrina.talkLetrinaMsg"));
 	}
 
 	@Override
-	public void use(Item item) {
-		// TODO Auto-generated method stub
-
-	}
-
+	public void use(Item item) {}
 }

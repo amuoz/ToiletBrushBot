@@ -48,9 +48,5 @@ public class Escobilla extends Item {
 	}
 
 	@Override
-	public String talk() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	public void talk() {}
 }

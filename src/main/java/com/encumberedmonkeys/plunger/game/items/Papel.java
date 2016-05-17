@@ -43,50 +43,31 @@ public class Papel extends Item {
 	}
 
 	@Override
-	public String pick() {
-		if (!enInventario) {
-			// insertar en el invetario
-			enInventario = true;
-			game.getPlayer().getInventory().add(this);
-			// quitar del level
-			game.getLevel().getObjects().remove(this);
-
-			return getMsg("papel.pickPapelMsg");
-		}
-		return getMsg("papel.pickPapelNoMsg");
-
+	public void talk() {
+		getTalkMsg();
 	}
 
-	@Override
-	public String talk() {
-		return getTalkMsg();
-	}
-
-	private String getTalkMsg() {
+	private void getTalkMsg() {
 		int max = 6;
 		int min = 1;
 		Random rand = new Random();
 		Integer result = rand.nextInt(max - min + 1) + min;
 		switch (result) {
 		case 1:
-			return getMsg("papel.talk1Msg");
+			sendMessageToUser(getMsg("papel.talk1Msg"));
 		case 2:
-			return getMsg("papel.talk2Msg");
+			sendMessageToUser(getMsg("papel.talk2Msg"));
 		case 3:
-			return getMsg("papel.talk3Msg");
+			sendMessageToUser(getMsg("papel.talk3Msg"));
 		case 4:
-			return getMsg("papel.talk4Msg");
+			sendMessageToUser(getMsg("papel.talk4Msg"));
 		case 5:
-			return getMsg("papel.talk5Msg");
+			sendMessageToUser(getMsg("papel.talk5Msg"));
 		default:
-			return getMsg("papel.talkNoMsg");
+			sendMessageToUser(getMsg("papel.talkNoMsg"));
 		}
 	}
 
 	@Override
-	public void use(Item item) {
-		// TODO Auto-generated method stub
-
-	}
-
+	public void use(Item item) {}
 }

@@ -21,18 +21,11 @@ public abstract class Item {
 	}
 
 	public abstract String getName();
-
 	public abstract void examine();
-
-	public void use() {
-		sendMessageToUser(getMsg("item.useWithMsg"));
-	}
-
+	public abstract void use();
 	public abstract void use(Item item);
-
-	public abstract String talk();
-
-	public String pick() {
+	public abstract void talk();
+	public void pick() {
 		// si el objeto es cogible
 		if (catchable) {
 			if (!enInventario) {
@@ -42,24 +35,22 @@ public abstract class Item {
 				// quitar del level
 				game.getLevel().getObjects().remove(this);
 
-				return getPickMsg();
+				sendMessageToUser(getPickMsg());
+			} else {
+				sendMessageToUser(getNoPickInventoryMsg());
 			}
-			return getNoPickInventoryMsg();
 		} else {
-			return getImpossibleMsg();
+			sendMessageToUser(getImpossibleMsg());
 		}
-
 	}
 
 	// Generic messages
 	private String getPickMsg() {
 		return LocalisationService.getInstance().getString("item.pickMsg");
 	}
-
 	private String getImpossibleMsg() {
 		return LocalisationService.getInstance().getString("item.impossibleMsg");
 	}
-
 	private String getNoPickInventoryMsg() {
 		return LocalisationService.getInstance().getString("item.noPickInventoryMsg");
 	}
@@ -68,15 +59,12 @@ public abstract class Item {
 	public String getMsg(String msg) {
 		return LocalisationService.getInstance().getString(msg);
 	}
-
 	public void sendMessageToUser(String text) {
 		ToiletBrushHandler.getInstance().sendMessageToUser(text);
 	}
-
 	public void sendPhotoToUser(String photoId) {
 		ToiletBrushHandler.getInstance().sendPhotoToUser(photoId);
 	}
-
 	public void sendKeyboardMessageToUser(String text, String... replies) {
 		ToiletBrushHandler.getInstance().sendKeyboardMessageToUser(text, new ArrayList<>(Arrays.asList(replies)));
 	}

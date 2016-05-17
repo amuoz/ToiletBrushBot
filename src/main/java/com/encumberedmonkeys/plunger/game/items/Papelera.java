@@ -33,14 +33,11 @@ public class Papelera extends Item {
 	}
 
 	@Override
-	public void use(Item item) {
-		// TODO Auto-generated method stub
-	}
+	public void use() {}
 
 	@Override
-	public String talk() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public void use(Item item) {}
 
+	@Override
+	public void talk() {}
 }

@@ -10,5 +10,6 @@ public class Messages {
 	public static String commandDoesntExist(){return LocalisationService.getInstance().getString("command.commandDoesntExist");}
 	public static String itemNotExist(){return LocalisationService.getInstance().getString("command.itemDoesntExist");}
 	public static String secondItemNotExist(){return LocalisationService.getInstance().getString("command.secondItemDoesntExist");}
+	public static String tooMuchItems(){return LocalisationService.getInstance().getString("command.tooMuchItems");}
 
 }

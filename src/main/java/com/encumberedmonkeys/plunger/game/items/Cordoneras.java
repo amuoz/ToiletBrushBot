@@ -26,14 +26,9 @@ public class Cordoneras extends Item {
 
 	@Override
 	public void use(Item item) {
-		// reutilizar use de escobille
 		item.use(this);
 	}
 
 	@Override
-	public String talk() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	public void talk() {}
 }

@@ -1,7 +1,7 @@
 package com.encumberedmonkeys.plunger.updateshandlers;
 
 import com.encumberedmonkeys.plunger.BotConfig;
-import com.encumberedmonkeys.plunger.Commander;
+import com.encumberedmonkeys.plunger.commander.Commander;
 import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.TelegramApiException;
 import org.telegram.telegrambots.api.methods.SendMessage;

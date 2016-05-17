@@ -24,14 +24,8 @@ public class Puerta extends Item {
 	}
 
 	@Override
-	public void use(Item item) {
-		// TODO Auto-generated method stub
-	}
+	public void use(Item item) {}
 
 	@Override
-	public String talk() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	public void talk() {}
 }

@@ -19,6 +19,9 @@ public class Manivela extends Item {
 	}
 
 	@Override
+	public void use() {}
+
+	@Override
 	public void use(Item item) {
 		if (item.getName().equals(getMsg("gancho.name"))) {
 			item.use(this);
@@ -26,9 +29,5 @@ public class Manivela extends Item {
 	}
 
 	@Override
-	public String talk() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	public void talk() {}
 }
