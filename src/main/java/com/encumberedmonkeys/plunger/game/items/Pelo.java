@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.encumberedmonkeys.plunger.game.Dialog;
 import com.encumberedmonkeys.plunger.game.Game;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 
 public class Pelo extends Item {
 
@@ -53,10 +54,12 @@ public class Pelo extends Item {
 
 	@Override
 	public void talk() {
-		List<List<String>> keyboard = new ArrayList<>();
+		List<KeyboardRow> keyboard = new ArrayList<>();
+		KeyboardRow keyrow = new KeyboardRow();
 		for(Dialog dialog: dialogs) {
-			keyboard.add(Arrays.asList(dialog.getPregunta()));
+			keyrow.add(dialog.getPregunta());
 		}
+		keyboard.add(keyrow);
 		sendKeyboardMessageToUser("test", keyboard);
 	}
 }

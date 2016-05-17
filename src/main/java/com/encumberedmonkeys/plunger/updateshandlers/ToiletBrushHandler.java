@@ -1,20 +1,19 @@
 package com.encumberedmonkeys.plunger.updateshandlers;
 
-import java.util.List;
-
-import org.telegram.telegrambots.TelegramApiException;
-import org.telegram.telegrambots.api.methods.SendMessage;
-import org.telegram.telegrambots.api.methods.SendPhoto;
-import org.telegram.telegrambots.api.objects.Message;
-import org.telegram.telegrambots.api.objects.ReplyKeyboardHide;
-import org.telegram.telegrambots.api.objects.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.api.objects.Update;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-
 import com.encumberedmonkeys.plunger.BotConfig;
 import com.encumberedmonkeys.plunger.commander.Commander;
-
 import lombok.extern.slf4j.Slf4j;
+import org.telegram.telegrambots.TelegramApiException;
+import org.telegram.telegrambots.api.methods.send.SendMessage;
+import org.telegram.telegrambots.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.api.objects.Message;
+import org.telegram.telegrambots.api.objects.Update;
+import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboardHide;
+import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
+import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+
+import java.util.List;
 
 /**
  * Manejador LongPolling para ToiletBrushBot.
@@ -79,7 +78,7 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 		}
 	}
 
-	public void sendKeyboardMessageToUser(String text, List<List<String>> replies) {
+	public void sendKeyboardMessageToUser(String text, List<KeyboardRow> replies) {
 
 		SendMessage sendMessage = new SendMessage();
 		sendMessage.setChatId(chatId);

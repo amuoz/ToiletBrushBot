@@ -7,6 +7,7 @@ import java.util.List;
 import com.encumberedmonkeys.plunger.game.Game;
 
 import lombok.Getter;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 
 public class Letrina extends Item {
 	@Getter
@@ -34,8 +35,10 @@ public class Letrina extends Item {
 	public void use() {
 		if (!usada) {
 			usada = true;
-			List<List<String>> keyboard = new ArrayList<>();
-			keyboard.add(Arrays.asList("CAGAR"));
+			List<KeyboardRow> keyboard = new ArrayList<>();
+			KeyboardRow keyrow = new KeyboardRow();
+			keyrow.add("CAGAR");
+			keyboard.add(keyrow);
 			sendKeyboardMessageToUser(getMsg("letrina.useBeforeShitMsg"), keyboard);
 		} else {
 			sendMessageToUser(getMsg("letrina.useAfterShitMsg"));

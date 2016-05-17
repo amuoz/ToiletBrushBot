@@ -5,6 +5,7 @@ import java.util.List;
 import com.encumberedmonkeys.plunger.game.Game;
 import com.encumberedmonkeys.plunger.services.LocationService;
 import com.encumberedmonkeys.plunger.updateshandlers.ToiletBrushHandler;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 
 public abstract class Item {
 
@@ -73,7 +74,7 @@ public abstract class Item {
 		ToiletBrushHandler.getInstance().sendPhotoToUser(photoId);
 	}
 
-	public void sendKeyboardMessageToUser(String text, List<List<String>> replies) {
+	public void sendKeyboardMessageToUser(String text, List<KeyboardRow> replies) {
 		ToiletBrushHandler.getInstance().sendKeyboardMessageToUser(text, replies);
 	}
 
