@@ -2,14 +2,14 @@ package com.encumberedmonkeys.plunger.commander.actions;
 
 import com.encumberedmonkeys.plunger.game.Game;
 import com.encumberedmonkeys.plunger.game.items.Item;
-import com.encumberedmonkeys.plunger.services.LocalisationService;
+import com.encumberedmonkeys.plunger.services.LocationService;
 import com.encumberedmonkeys.plunger.updateshandlers.ToiletBrushHandler;
 
 import java.util.List;
 
 public class Inventory extends Action {
     public Inventory(Game game){
-        this.command = LocalisationService.getInstance().getString("command.inventory");
+        this.command = LocationService.getInstance().getString("command.inventory");
         this.game = game;
     }
 

@@ -4,7 +4,7 @@ import com.encumberedmonkeys.plunger.commander.actions.*;
 import com.encumberedmonkeys.plunger.game.Game;
 import com.encumberedmonkeys.plunger.game.Messages;
 import com.encumberedmonkeys.plunger.game.items.Item;
-import com.encumberedmonkeys.plunger.services.LocalisationService;
+import com.encumberedmonkeys.plunger.services.LocationService;
 import com.encumberedmonkeys.plunger.updateshandlers.ToiletBrushHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.api.objects.Message;
@@ -41,13 +41,13 @@ public class Commander {
 
 	public void execute(Message message) {
 		Game game = obtainGame(message.getFrom().getId());
-		String[] input = message.getText().split(" ");
+		String[] input = message.getText().toLowerCase().split(" ");
 		log.debug("userInput: " + message.getText());
 		switch (input[0].toLowerCase()) {
 			case Commands.startCmd:
 				newGame(message.getFrom().getId());
 				sendMessageToUser(Messages.start());
-				sendPhotoToUser(LocalisationService.getInstance().getString("img.letrina"));
+				sendPhotoToUser(LocationService.getInstance().getString("img.letrina"));
 				break;
 			case Commands.helpCmd:
 				sendMessageToUser(Messages.help());
@@ -157,9 +157,9 @@ public class Commander {
 	}
 
 	private void setLanguage(String language){
-		LocalisationService localisationService = LocalisationService.getInstance();
-		if (localisationService.getSupportedLanguages().containsKey(language)) {
-			localisationService.setLanguage(language);
+		LocationService locationService = LocationService.getInstance();
+		if (locationService.getSupportedLanguages().containsKey(language)) {
+			locationService.setLanguage(language);
 		}
 		sendMessageToUser("Se ha cambiado el idioma a: " + language);
 	}

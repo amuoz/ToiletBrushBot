@@ -23,14 +23,13 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<telegrambots.version>v1.0</telegrambots.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.github.rubenlagus</groupId>
 			<artifactId>TelegramBots</artifactId>
-			<version>${telegrambots.version}</version>
+			<version>v2.3.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.json</groupId>
