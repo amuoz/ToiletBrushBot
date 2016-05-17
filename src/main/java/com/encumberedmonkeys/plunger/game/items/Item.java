@@ -3,7 +3,7 @@ package com.encumberedmonkeys.plunger.game.items;
 import java.util.List;
 
 import com.encumberedmonkeys.plunger.game.Game;
-import com.encumberedmonkeys.plunger.services.LocalisationService;
+import com.encumberedmonkeys.plunger.services.LocationService;
 import com.encumberedmonkeys.plunger.updateshandlers.ToiletBrushHandler;
 
 public abstract class Item {
@@ -49,20 +49,20 @@ public abstract class Item {
 
 	// Generic messages
 	private String getPickMsg() {
-		return LocalisationService.getInstance().getString("item.pickMsg");
+		return LocationService.getInstance().getString("item.pickMsg");
 	}
 
 	private String getImpossibleMsg() {
-		return LocalisationService.getInstance().getString("item.impossibleMsg");
+		return LocationService.getInstance().getString("item.impossibleMsg");
 	}
 
 	private String getNoPickInventoryMsg() {
-		return LocalisationService.getInstance().getString("item.noPickInventoryMsg");
+		return LocationService.getInstance().getString("item.noPickInventoryMsg");
 	}
 
 	// Utils
 	public String getMsg(String msg) {
-		return LocalisationService.getInstance().getString(msg);
+		return LocationService.getInstance().getString(msg);
 	}
 
 	public void sendMessageToUser(String text) {

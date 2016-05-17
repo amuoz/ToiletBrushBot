@@ -12,24 +12,24 @@ import java.util.*;
  * @version 1.0
  * Localisation
  */
-public class LocalisationService {
-    private static LocalisationService instance = null;
+public class LocationService {
+    private static LocationService instance = null;
     private final HashMap<String, ResourceBundle> supportedLanguages = new HashMap<>();
 
     private ResourceBundle configured;
 
-    public static LocalisationService getInstance() {
+    public static LocationService getInstance() {
         if (instance == null) {
-            synchronized (LocalisationService.class) {
+            synchronized (LocationService.class) {
                 if (instance == null) {
-                    instance = new LocalisationService();
+                    instance = new LocationService();
                 }
             }
         }
         return instance;
     }
 
-    private LocalisationService() {
+    private LocationService() {
         ResourceBundle english = ResourceBundle.getBundle("game.text", new Locale("en"), new UTF8Control());
         supportedLanguages.put("en", english);
         ResourceBundle spanish = ResourceBundle.getBundle("game.text", new Locale("es"), new UTF8Control());
