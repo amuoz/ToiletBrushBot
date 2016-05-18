@@ -1,11 +1,12 @@
 package com.encumberedmonkeys.plunger.updateshandlers;
 
-import com.encumberedmonkeys.plunger.BotConfig;
-import com.encumberedmonkeys.plunger.commander.Commander;
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+
 import org.telegram.telegrambots.TelegramApiException;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.api.methods.updatingmessages.EditMessageReplyMarkup;
+import org.telegram.telegrambots.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -15,7 +16,11 @@ import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboar
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 
-import java.util.List;
+import com.encumberedmonkeys.plunger.BotConfig;
+import com.encumberedmonkeys.plunger.commander.Commander;
+
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Manejador LongPolling para ToiletBrushBot.
@@ -32,7 +37,10 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 		return HANDLER;
 	}
 
+	@Getter
 	private String chatId;
+	@Getter
+	private Integer messageId;
 
 	@Override
 	public String getBotUsername() {
@@ -46,11 +54,21 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 
 	@Override
 	public void onUpdateReceived(Update update) {
+
 		Message message = update.getMessage();
 		if (message != null && !message.getText().isEmpty()) {
 			chatId = message.getChatId().toString();
+			messageId = message.getMessageId();
 			Commander.getInstance().execute(message);
 		}
+
+		// callback inline keyboard
+		if (update.getCallbackQuery() != null) {
+			chatId = update.getCallbackQuery().getMessage().getChatId().toString();
+			messageId = update.getCallbackQuery().getMessage().getMessageId();
+			Commander.getInstance().executeCallback(update.getCallbackQuery());
+		}
+
 	}
 
 	public void sendMessageToUser(String text) {
@@ -113,6 +131,42 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 
 		try {
 			sendMessage(sendMessage);
+		} catch (TelegramApiException e) {
+			log.error("Error in telegram API", e);
+		}
+	}
+
+	public void editMessageTextToUser(String text, List<List<InlineKeyboardButton>> replies) {
+
+		EditMessageText editMessageText = new EditMessageText();
+		editMessageText.setChatId(chatId);
+		editMessageText.setMessageId(messageId);
+		editMessageText.enableMarkdown(true);
+		editMessageText.setText(text);
+
+		InlineKeyboardMarkup replyInlineKeyboardMarkup = new InlineKeyboardMarkup();
+		replyInlineKeyboardMarkup.setKeyboard(replies);
+		editMessageText.setReplyMarkup(replyInlineKeyboardMarkup);
+
+		try {
+			editMessageText(editMessageText);
+		} catch (TelegramApiException e) {
+			log.error("Error in telegram API", e);
+		}
+	}
+
+	public void editMessageReplyMarkupToUser(List<List<InlineKeyboardButton>> replies) {
+
+		EditMessageReplyMarkup editMessageReplyMarkup = new EditMessageReplyMarkup();
+		editMessageReplyMarkup.setChatId(chatId);
+		editMessageReplyMarkup.setMessageId(messageId);
+
+		InlineKeyboardMarkup replyInlineKeyboardMarkup = new InlineKeyboardMarkup();
+		replyInlineKeyboardMarkup.setKeyboard(replies);
+		editMessageReplyMarkup.setReplyMarkup(replyInlineKeyboardMarkup);
+
+		try {
+			editMessageReplyMarkup(editMessageReplyMarkup);
 		} catch (TelegramApiException e) {
 			log.error("Error in telegram API", e);
 		}

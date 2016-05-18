@@ -7,6 +7,8 @@ import com.encumberedmonkeys.plunger.game.items.Item;
 import com.encumberedmonkeys.plunger.services.LocationService;
 import com.encumberedmonkeys.plunger.updateshandlers.ToiletBrushHandler;
 import lombok.extern.slf4j.Slf4j;
+
+import org.telegram.telegrambots.api.objects.CallbackQuery;
 import org.telegram.telegrambots.api.objects.Message;
 
 import java.util.HashMap;
@@ -40,123 +42,138 @@ public class Commander {
 	}
 
 	public void execute(Message message) {
-		Game game = obtainGame(message.getFrom().getId());
-		String[] input = message.getText().toLowerCase().split(" ");
 		log.debug("userInput: " + message.getText());
+
+		String[] input = message.getText().toLowerCase().split(" ");
 		switch (input[0].toLowerCase()) {
-			case Commands.startCmd:
-				newGame(message.getFrom().getId());
-				sendMessageToUser(Messages.start());
-				sendPhotoToUser(LocationService.getInstance().getString("img.letrina"));
-				break;
-			case Commands.helpCmd:
-				sendMessageToUser(Messages.help());
-				break;
-			case Commands.languageCmd:
-				if (input.length == 2) {
-					setLanguage(input[1]);
-					sendMessageToUser(Messages.language());
-				} else {
-					sendMessageToUser("¿A que idioma quieres cambiarlo?");
-				}
-				break;
-			default:
-				Action action = createAction(game, input);
-				if(action != null) ActionHandler.getInstance().handle(action);
-				break;
+		case Commands.startCmd:
+			newGame(message.getFrom().getId());
+			sendMessageToUser(Messages.start());
+			sendPhotoToUser(LocationService.getInstance().getString("img.letrina"));
+			break;
+		case Commands.helpCmd:
+			sendMessageToUser(Messages.help());
+			break;
+		case Commands.languageCmd:
+			if (input.length == 2) {
+				setLanguage(input[1]);
+				sendMessageToUser(Messages.language());
+			} else {
+				sendMessageToUser("¿A que idioma quieres cambiarlo?");
+			}
+			break;
+		default:
+			Game game = obtainGame(message.getFrom().getId());
+			Action action = createAction(game, input);
+			if (action != null)
+				ActionHandler.getInstance().handle(action);
+			break;
 		}
 	}
 
 	private Action createAction(Game game, String[] input) {
 		Action action = null;
-		switch (input[0].toLowerCase()){
-			case "examinar":
-				if(input.length == 2) {
-					Item first = game.getItem(input[1]);
-					if(first != null){
-						action = new Examine(game, first);
-					} else {
-						sendMessageToUser(Messages.itemNotExist());
-					}
-				} else if(input.length == 1){
-					sendMessageToUser(Messages.noItem());
+		switch (input[0].toLowerCase()) {
+		case "examinar":
+			if (input.length == 2) {
+				Item first = game.getItem(input[1]);
+				if (first != null) {
+					action = new Examine(game, first);
 				} else {
-					sendMessageToUser(Messages.tooMuchItems());
+					sendMessageToUser(Messages.itemNotExist());
 				}
-				break;
-			case "coger":
-				if(input.length == 2) {
-					Item first = game.getItem(input[1]);
-					if(first != null) {
-						action = new Pick(game, first);
-					} else {
-						sendMessageToUser(Messages.itemNotExist());
-					}
-				} else if(input.length == 1){
-					sendMessageToUser(Messages.noItem());
+			} else if (input.length == 1) {
+				sendMessageToUser(Messages.noItem());
+			} else {
+				sendMessageToUser(Messages.tooMuchItems());
+			}
+			break;
+		case "coger":
+			if (input.length == 2) {
+				Item first = game.getItem(input[1]);
+				if (first != null) {
+					action = new Pick(game, first);
 				} else {
-					sendMessageToUser(Messages.tooMuchItems());
+					sendMessageToUser(Messages.itemNotExist());
 				}
-				break;
-			case "usar":
-				if(input.length == 2) {
-					Item first = game.getItem(input[1]);
-					if(first != null) {
-						action = new Use(game, first);
-					} else {
-						sendMessageToUser(Messages.itemNotExist());
-					}
-				} else if(input.length == 3) {
-					Item first = game.getItem(input[1]);
-					Item second = game.getItem(input[2]);
-					if(first != null && second != null) {
-						action = new UseWith(game, first, second);
-					} else if(first == null){
-						sendMessageToUser(Messages.itemNotExist());
-					} else if(second == null){
-						sendMessageToUser(Messages.secondItemNotExist());
-					}
-				} else if(input.length == 1){
-					sendMessageToUser(Messages.noItem());
+			} else if (input.length == 1) {
+				sendMessageToUser(Messages.noItem());
+			} else {
+				sendMessageToUser(Messages.tooMuchItems());
+			}
+			break;
+		case "usar":
+			if (input.length == 2) {
+				Item first = game.getItem(input[1]);
+				if (first != null) {
+					action = new Use(game, first);
 				} else {
-					sendMessageToUser(Messages.tooMuchItems());
+					sendMessageToUser(Messages.itemNotExist());
 				}
-				break;
-			case "hablar":
-				if(input.length == 2) {
-					Item first = game.getItem(input[1]);
-					if (first != null) {
-						action = new Talk(game, first);
-					} else {
-						sendMessageToUser(Messages.itemNotExist());
-					}
-				} else if(input.length == 1){
-					sendMessageToUser(Messages.noItem());
+			} else if (input.length == 3) {
+				Item first = game.getItem(input[1]);
+				Item second = game.getItem(input[2]);
+				if (first != null && second != null) {
+					action = new UseWith(game, first, second);
+				} else if (first == null) {
+					sendMessageToUser(Messages.itemNotExist());
+				} else if (second == null) {
+					sendMessageToUser(Messages.secondItemNotExist());
+				}
+			} else if (input.length == 1) {
+				sendMessageToUser(Messages.noItem());
+			} else {
+				sendMessageToUser(Messages.tooMuchItems());
+			}
+			break;
+		case "hablar":
+			if (input.length == 2) {
+				Item first = game.getItem(input[1]);
+				if (first != null) {
+					action = new Talk(game, first);
 				} else {
-					sendMessageToUser(Messages.tooMuchItems());
+					sendMessageToUser(Messages.itemNotExist());
 				}
-				break;
-			case "inventario":
-				if(input.length == 1) {
-					action = new Inventory(game);
-				} else {
-					sendMessageToUser(Messages.tooMuchItems());
-				}
-				break;
-			case "CAGAR":
-				if(input.length == 1) {
-					action = new Shit(game);
-				}
-				break;
-			default:
-				log.info("El comando no existe: ", input[0]);
-				sendMessageToUser(Messages.commandDoesntExist());
-				break;
+			} else if (input.length == 1) {
+				sendMessageToUser(Messages.noItem());
+			} else {
+				sendMessageToUser(Messages.tooMuchItems());
+			}
+			break;
+		case "inventario":
+			if (input.length == 1) {
+				action = new Inventory(game);
+			} else {
+				sendMessageToUser(Messages.tooMuchItems());
+			}
+			break;
+		case "cagar":
+			if (input.length == 1) {
+				action = new Shit(game);
+			}
+			break;
+		default:
+			log.info("El comando no existe: ", input[0]);
+			sendMessageToUser(Messages.commandDoesntExist());
+			break;
 		}
 		return action;
 	}
 
-	private void setLanguage(String language){
+	public void executeCallback(CallbackQuery callbackQuery) {
+		log.debug("callbackQuery data: " + callbackQuery.getData());
+
+		String[] input = callbackQuery.getData().toLowerCase().split(" ");
+
+		Game game = obtainGame(callbackQuery.getFrom().getId());
+		Item first = game.getItem(input[0]);
+		Integer dialogo = Integer.parseInt(input[1]);
+
+		Action action = new Talk2(game, first, dialogo);
+		ActionHandler.getInstance().handle(action);
+	}
+
+	private void setLanguage(String language) {
 		LocationService locationService = LocationService.getInstance();
 		if (locationService.getSupportedLanguages().containsKey(language)) {
 			locationService.setLanguage(language);

@@ -28,4 +28,10 @@ public class Chicle extends Item {
 
 	@Override
 	public void talk() {}
+
+	@Override
+	public void talk(Integer dialogo) {
+		// TODO Auto-generated method stub
+		
+	}
 }

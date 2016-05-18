@@ -13,8 +13,19 @@ public class Dialog {
 
 	private List<Dialog> conversaciones;
 
+	private boolean activo;
+	private boolean desactivable;
+	private boolean cerrar;
+
 	public Dialog() {
 		conversaciones = new ArrayList<Dialog>();
+		desactivable = true;
+	}
+
+	public void desactivar() {
+		if (desactivable) {
+			setActivo(false);
+		}
 	}
 
 }

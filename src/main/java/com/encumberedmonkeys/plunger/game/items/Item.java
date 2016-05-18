@@ -31,6 +31,8 @@ public abstract class Item {
 
 	public abstract void talk();
 
+	public abstract void talk(Integer dialogo);
+
 	public void pick() {
 		// si el objeto es cogible
 		if (catchable) {
@@ -79,9 +81,17 @@ public abstract class Item {
 	public void sendKeyboardMessageToUser(String text, List<KeyboardRow> replies) {
 		ToiletBrushHandler.getInstance().sendKeyboardMessageToUser(text, replies);
 	}
-	
+
 	public void sendInlineKeyboardMessageToUser(String text, List<List<InlineKeyboardButton>> replies) {
 		ToiletBrushHandler.getInstance().sendInlineKeyboardMessageToUser(text, replies);
+	}
+
+	public void editMessageTextToUser(String text, List<List<InlineKeyboardButton>> replies) {
+		ToiletBrushHandler.getInstance().editMessageTextToUser(text, replies);
+	}
+
+	public void editMessageReplyMarkupToUser(List<List<InlineKeyboardButton>> replies) {
+		ToiletBrushHandler.getInstance().editMessageReplyMarkupToUser(replies);
 	}
 
 }
