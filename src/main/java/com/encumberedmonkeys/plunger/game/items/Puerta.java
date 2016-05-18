@@ -23,15 +23,4 @@ public class Puerta extends Item {
 		sendMessageToUser(getMsg("puerta.use"));
 	}
 
-	@Override
-	public void use(Item item) {}
-
-	@Override
-	public void talk() {}
-
-	@Override
-	public void talk(Integer dialogo) {
-		// TODO Auto-generated method stub
-		
-	}
 }

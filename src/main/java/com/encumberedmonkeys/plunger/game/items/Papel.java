@@ -68,12 +68,4 @@ public class Papel extends Item {
 		}
 	}
 
-	@Override
-	public void use(Item item) {}
-
-	@Override
-	public void talk(Integer dialogo) {
-		// TODO Auto-generated method stub
-		
-	}
 }

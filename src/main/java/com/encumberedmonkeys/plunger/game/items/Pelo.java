@@ -51,14 +51,6 @@ public class Pelo extends Item {
 	}
 
 	@Override
-	public void use() {
-	}
-
-	@Override
-	public void use(Item item) {
-	}
-
-	@Override
 	public void talk() {
 		List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 

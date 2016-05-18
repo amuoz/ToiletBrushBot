@@ -32,18 +32,4 @@ public class Papelera extends Item {
 		}
 	}
 
-	@Override
-	public void use() {}
-
-	@Override
-	public void use(Item item) {}
-
-	@Override
-	public void talk() {}
-
-	@Override
-	public void talk(Integer dialogo) {
-		// TODO Auto-generated method stub
-		
-	}
 }

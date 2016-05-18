@@ -21,28 +21,25 @@ public class Gancho extends Item {
 	}
 
 	@Override
-	public void use() {}
+	public void use() {
+	}
 
 	@Override
 	public void use(Item item) {
 		if (item.getName().equals(getMsg("manivela.name"))) {
 			// me desatasco
 			game.getPlayer().setAtascado(false);
+
+			// mantenemos gancho en el inventario
+	
+			// manivela no desaparece pero marcamos como rota
+			Manivela manivela = (Manivela) item;
+			manivela.setRota(true);
 			
-			game.getPlayer().getInventory().remove(this);
-			game.getLevel().getObjects().remove(item);
 			sendMessageToUser(getMsg("plunger.desatascado"));
 		} else {
 			sendMessageToUser(getMsg("item.noMsg"));
 		}
 	}
 
-	@Override
-	public void talk() {}
-
-	@Override
-	public void talk(Integer dialogo) {
-		// TODO Auto-generated method stub
-		
-	}
 }

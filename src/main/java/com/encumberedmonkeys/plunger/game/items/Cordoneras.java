@@ -29,12 +29,4 @@ public class Cordoneras extends Item {
 		item.use(this);
 	}
 
-	@Override
-	public void talk() {}
-
-	@Override
-	public void talk(Integer dialogo) {
-		// TODO Auto-generated method stub
-		
-	}
 }

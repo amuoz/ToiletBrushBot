@@ -25,14 +25,6 @@ public abstract class Item {
 
 	public abstract void examine();
 
-	public abstract void use();
-
-	public abstract void use(Item item);
-
-	public abstract void talk();
-
-	public abstract void talk(Integer dialogo);
-
 	public void pick() {
 		// si el objeto es cogible
 		if (catchable) {
@@ -52,6 +44,22 @@ public abstract class Item {
 		}
 	}
 
+	public void use() {
+		sendMessageToUser(getImpossibleMsg());
+	}
+
+	public void use(Item item) {
+		sendMessageToUser(getImpossibleMsg());
+	}
+
+	public void talk() {
+		sendMessageToUser(getNoMsg());
+	}
+
+	public void talk(Integer dialogo) {
+		sendMessageToUser(getNoMsg());
+	}
+
 	// Generic messages
 	private String getPickMsg() {
 		return LocationService.getInstance().getString("item.pickMsg");
@@ -63,6 +71,10 @@ public abstract class Item {
 
 	private String getNoPickInventoryMsg() {
 		return LocationService.getInstance().getString("item.noPickInventoryMsg");
+	}
+
+	private String getNoMsg() {
+		return LocationService.getInstance().getString("item.noMsg");
 	}
 
 	// Utils

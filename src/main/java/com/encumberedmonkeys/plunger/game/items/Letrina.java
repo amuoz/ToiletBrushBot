@@ -1,13 +1,13 @@
 package com.encumberedmonkeys.plunger.game.items;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 
 import com.encumberedmonkeys.plunger.game.Game;
 
 import lombok.Getter;
-import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 
 public class Letrina extends Item {
 	@Getter
@@ -55,13 +55,4 @@ public class Letrina extends Item {
 		sendMessageToUser(getMsg("letrina.talkLetrinaMsg"));
 	}
 
-	@Override
-	public void use(Item item) {
-	}
-
-	@Override
-	public void talk(Integer dialogo) {
-		// TODO Auto-generated method stub
-		
-	}
 }

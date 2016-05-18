@@ -47,12 +47,4 @@ public class Escobilla extends Item {
 		sendMessageToUser(getMsg("gancho.new"));
 	}
 
-	@Override
-	public void talk() {}
-
-	@Override
-	public void talk(Integer dialogo) {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -55,18 +55,23 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 	@Override
 	public void onUpdateReceived(Update update) {
 
-		Message message = update.getMessage();
-		if (message != null && !message.getText().isEmpty()) {
-			chatId = message.getChatId().toString();
-			messageId = message.getMessageId();
-			Commander.getInstance().execute(message);
-		}
+		try {
+			Message message = update.getMessage();
+			if (message != null && !message.getText().isEmpty()) {
+				chatId = message.getChatId().toString();
+				messageId = message.getMessageId();
+				Commander.getInstance().execute(message);
+			}
 
-		// callback inline keyboard
-		if (update.getCallbackQuery() != null) {
-			chatId = update.getCallbackQuery().getMessage().getChatId().toString();
-			messageId = update.getCallbackQuery().getMessage().getMessageId();
-			Commander.getInstance().executeCallback(update.getCallbackQuery());
+			// callback inline keyboard
+			if (update.getCallbackQuery() != null) {
+				chatId = update.getCallbackQuery().getMessage().getChatId().toString();
+				messageId = update.getCallbackQuery().getMessage().getMessageId();
+				Commander.getInstance().executeCallback(update.getCallbackQuery());
+			}
+
+		} catch (Exception e) {
+			log.error("Error in Plunger bot", e);
 		}
 
 	}
