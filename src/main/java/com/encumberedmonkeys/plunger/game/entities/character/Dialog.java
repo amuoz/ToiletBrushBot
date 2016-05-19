@@ -1,21 +1,21 @@
 package com.encumberedmonkeys.plunger.game.entities.character;
 
-import lombok.Data;
+import java.util.HashMap;
+import java.util.Map;
 
-import java.util.ArrayList;
-import java.util.List;
+import lombok.Data;
 
 @Data
 public class Dialog {
 
 	private String greeting;
 	private String name;
-	List<Conversation> conversations;
+	protected Map<String, Conversation> conversations;
 
 	public Dialog(String name) {
 		this.greeting = "...";
 		this.name = name;
-		this.conversations = new ArrayList<Conversation>();
+		this.conversations = new HashMap<String, Conversation>();
 	}
 
 }

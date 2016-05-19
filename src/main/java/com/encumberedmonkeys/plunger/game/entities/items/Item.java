@@ -2,12 +2,6 @@ package com.encumberedmonkeys.plunger.game.entities.items;
 
 import com.encumberedmonkeys.plunger.game.Game;
 import com.encumberedmonkeys.plunger.game.entities.Entity;
-import com.encumberedmonkeys.plunger.services.LocationService;
-import com.encumberedmonkeys.plunger.updateshandlers.ToiletBrushHandler;
-import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
-
-import java.util.List;
 
 public abstract class Item extends Entity {
 
@@ -38,14 +32,23 @@ public abstract class Item extends Entity {
 			sendMessageToUser(getImpossibleMsg());
 		}
 	}
-	public void examine() { sendMessageToUser(getImpossibleMsg()); }
+
+	public void examine() {
+		sendMessageToUser(getImpossibleMsg());
+	}
+
 	public void use() {
 		sendMessageToUser(getImpossibleMsg());
 	}
-	public void use(Entity entity) { sendMessageToUser(getImpossibleMsg());	}
+
+	public void use(Entity entity) {
+		sendMessageToUser(getImpossibleMsg());
+	}
+
 	public void talk() {
 		sendMessageToUser(getNoMsg());
 	}
+
 	public void talk(Integer dialog) {
 		sendMessageToUser(getNoMsg());
 	}
