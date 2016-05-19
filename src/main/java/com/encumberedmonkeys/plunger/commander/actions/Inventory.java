@@ -1,7 +1,7 @@
 package com.encumberedmonkeys.plunger.commander.actions;
 
 import com.encumberedmonkeys.plunger.game.Game;
-import com.encumberedmonkeys.plunger.game.items.Item;
+import com.encumberedmonkeys.plunger.game.entities.items.Item;
 import com.encumberedmonkeys.plunger.services.LocationService;
 import com.encumberedmonkeys.plunger.updateshandlers.ToiletBrushHandler;
 

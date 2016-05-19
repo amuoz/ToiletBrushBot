@@ -1,6 +1,7 @@
-package com.encumberedmonkeys.plunger.game.items;
+package com.encumberedmonkeys.plunger.game.entities.items;
 
 import com.encumberedmonkeys.plunger.game.Game;
+import com.encumberedmonkeys.plunger.game.entities.Entity;
 
 public class Escobilla extends Item {
 
@@ -25,7 +26,7 @@ public class Escobilla extends Item {
 	}
 
 	@Override
-	public void use(Item item) {
+	public void use(Entity entity) {
 
 		// desaparece escobilla del inventario o escena
 		if (enInventario) {
@@ -35,10 +36,10 @@ public class Escobilla extends Item {
 		}
 
 		// desaparece cordoneras del inventario o escena
-		if (item.enInventario) {
-			game.getPlayer().getInventory().remove(item);
+		if (entity instanceof Item && ((Item) entity).enInventario) {
+			game.getPlayer().getInventory().remove(entity);
 		} else {
-			game.getLevel().getObjects().remove(item);
+			game.getLevel().getObjects().remove(entity);
 		}
 
 		// se crea un gancho

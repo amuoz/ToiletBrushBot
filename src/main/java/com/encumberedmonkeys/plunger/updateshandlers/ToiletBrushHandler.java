@@ -1,7 +1,9 @@
 package com.encumberedmonkeys.plunger.updateshandlers;
 
-import java.util.List;
-
+import com.encumberedmonkeys.plunger.BotConfig;
+import com.encumberedmonkeys.plunger.commander.Commander;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.TelegramApiException;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.methods.send.SendPhoto;
@@ -16,11 +18,7 @@ import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboar
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 
-import com.encumberedmonkeys.plunger.BotConfig;
-import com.encumberedmonkeys.plunger.commander.Commander;
-
-import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
 
 /**
  * Manejador LongPolling para ToiletBrushBot.

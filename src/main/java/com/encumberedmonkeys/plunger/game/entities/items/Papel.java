@@ -1,8 +1,8 @@
-package com.encumberedmonkeys.plunger.game.items;
-
-import java.util.Random;
+package com.encumberedmonkeys.plunger.game.entities.items;
 
 import com.encumberedmonkeys.plunger.game.Game;
+
+import java.util.Random;
 
 public class Papel extends Item {
 
@@ -28,7 +28,7 @@ public class Papel extends Item {
 	public void use() {
 		if (enInventario) {
 
-			Letrina letrina = (Letrina) game.getItem(getMsg("letrina.name"));
+			Letrina letrina = (Letrina) game.getEntity(getMsg("letrina.name"));
 			// si hemos cagado nos limpiamos
 			if (letrina.isUsada()) {
 				game.getPlayer().getInventory().remove(this);

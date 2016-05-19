@@ -1,6 +1,7 @@
-package com.encumberedmonkeys.plunger.game.items;
+package com.encumberedmonkeys.plunger.game.entities.items;
 
 import com.encumberedmonkeys.plunger.game.Game;
+import com.encumberedmonkeys.plunger.game.entities.Entity;
 
 public class Gancho extends Item {
 
@@ -25,15 +26,15 @@ public class Gancho extends Item {
 	}
 
 	@Override
-	public void use(Item item) {
-		if (item.getName().equals(getMsg("manivela.name"))) {
+	public void use(Entity entity) {
+		if (entity.getName().equals(getMsg("manivela.name"))) {
 			// me desatasco
 			game.getPlayer().setAtascado(false);
 
 			// mantenemos gancho en el inventario
 	
 			// manivela no desaparece pero marcamos como rota
-			Manivela manivela = (Manivela) item;
+			Manivela manivela = (Manivela) entity;
 			manivela.setRota(true);
 			
 			sendMessageToUser(getMsg("plunger.desatascado"));

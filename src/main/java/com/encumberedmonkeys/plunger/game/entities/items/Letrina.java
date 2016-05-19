@@ -1,13 +1,11 @@
-package com.encumberedmonkeys.plunger.game.items;
+package com.encumberedmonkeys.plunger.game.entities.items;
+
+import com.encumberedmonkeys.plunger.game.Game;
+import lombok.Getter;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
-
-import com.encumberedmonkeys.plunger.game.Game;
-
-import lombok.Getter;
 
 public class Letrina extends Item {
 	@Getter

@@ -1,6 +1,7 @@
 package com.encumberedmonkeys.plunger.game;
 
-import com.encumberedmonkeys.plunger.game.items.Item;
+import com.encumberedmonkeys.plunger.game.entities.Entity;
+import com.encumberedmonkeys.plunger.game.entities.items.Item;
 import com.encumberedmonkeys.plunger.game.levels.Cabin;
 import com.encumberedmonkeys.plunger.game.levels.Level;
 import lombok.Getter;
@@ -19,13 +20,13 @@ public class Game {
 		level = new Cabin(this);
 	}
 
-	public Item getItem(String name) {
-		for (Item object : player.getInventory()) {
+	public Entity getEntity(String name) {
+		for (Entity object : player.getInventory()) {
 			if (object.getName().equals(name)) {
 				return object;
 			}
 		}
-		for (Item object : level.getObjects()) {
+		for (Entity object : level.getObjects()) {
 			if (object.getName().equals(name)) {
 				return object;
 			}
@@ -33,11 +34,11 @@ public class Game {
 		return null;
 	}
 
-	public List<Item> getAllItems() {
-		List<Item> result = new ArrayList<>();
+	public List<Entity> getAllEntities() {
+		List<Entity> result = new ArrayList<>();
 		List<Item> inventory = player.getInventory();
 		if(inventory != null) result.addAll(inventory);
-		List<Item> objects = level.getObjects();
+		List<Entity> objects = level.getObjects();
 		if(objects != null) result.addAll(objects);
 		return result;
 	}

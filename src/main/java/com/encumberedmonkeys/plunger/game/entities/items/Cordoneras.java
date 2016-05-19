@@ -1,6 +1,7 @@
-package com.encumberedmonkeys.plunger.game.items;
+package com.encumberedmonkeys.plunger.game.entities.items;
 
 import com.encumberedmonkeys.plunger.game.Game;
+import com.encumberedmonkeys.plunger.game.entities.Entity;
 
 public class Cordoneras extends Item {
 
@@ -25,8 +26,8 @@ public class Cordoneras extends Item {
 	}
 
 	@Override
-	public void use(Item item) {
-		item.use(this);
+	public void use(Entity entity) {
+		entity.use(this);
 	}
 
 }

@@ -1,12 +1,11 @@
 package com.encumberedmonkeys.plunger.game;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.encumberedmonkeys.plunger.game.items.Item;
-
+import com.encumberedmonkeys.plunger.game.entities.items.Item;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
 

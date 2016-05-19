@@ -1,9 +1,9 @@
-package com.encumberedmonkeys.plunger.game;
+package com.encumberedmonkeys.plunger.game.entities.character;
+
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import lombok.Data;
 
 @Data
 public class Dialog {

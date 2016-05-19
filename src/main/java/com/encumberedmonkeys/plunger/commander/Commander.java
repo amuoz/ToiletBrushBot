@@ -3,11 +3,10 @@ package com.encumberedmonkeys.plunger.commander;
 import com.encumberedmonkeys.plunger.commander.actions.*;
 import com.encumberedmonkeys.plunger.game.Game;
 import com.encumberedmonkeys.plunger.game.Messages;
-import com.encumberedmonkeys.plunger.game.items.Item;
+import com.encumberedmonkeys.plunger.game.entities.Entity;
 import com.encumberedmonkeys.plunger.services.LocationService;
 import com.encumberedmonkeys.plunger.updateshandlers.ToiletBrushHandler;
 import lombok.extern.slf4j.Slf4j;
-
 import org.telegram.telegrambots.api.objects.CallbackQuery;
 import org.telegram.telegrambots.api.objects.Message;
 
@@ -76,7 +75,7 @@ public class Commander {
 		switch (input[0].toLowerCase()) {
 		case "examinar":
 			if (input.length == 2) {
-				Item first = game.getItem(input[1]);
+				Entity first = game.getEntity(input[1]);
 				if (first != null) {
 					action = new Examine(game, first);
 				} else {
@@ -90,7 +89,7 @@ public class Commander {
 			break;
 		case "coger":
 			if (input.length == 2) {
-				Item first = game.getItem(input[1]);
+				Entity first = game.getEntity(input[1]);
 				if (first != null) {
 					action = new Pick(game, first);
 				} else {
@@ -104,15 +103,15 @@ public class Commander {
 			break;
 		case "usar":
 			if (input.length == 2) {
-				Item first = game.getItem(input[1]);
+				Entity first = game.getEntity(input[1]);
 				if (first != null) {
 					action = new Use(game, first);
 				} else {
 					sendMessageToUser(Messages.itemNotExist());
 				}
 			} else if (input.length == 3) {
-				Item first = game.getItem(input[1]);
-				Item second = game.getItem(input[2]);
+				Entity first = game.getEntity(input[1]);
+				Entity second = game.getEntity(input[2]);
 				if (first != null && second != null) {
 					action = new UseWith(game, first, second);
 				} else if (first == null) {
@@ -128,7 +127,7 @@ public class Commander {
 			break;
 		case "hablar":
 			if (input.length == 2) {
-				Item first = game.getItem(input[1]);
+				Entity first = game.getEntity(input[1]);
 				if (first != null) {
 					action = new Talk(game, first);
 				} else {
@@ -166,10 +165,10 @@ public class Commander {
 		String[] input = callbackQuery.getData().toLowerCase().split(" ");
 
 		Game game = obtainGame(callbackQuery.getFrom().getId());
-		Item first = game.getItem(input[0]);
+		Entity first = game.getEntity(input[0]);
 		Integer dialogo = Integer.parseInt(input[1]);
 
-		Action action = new Talk2(game, first, dialogo);
+		Action action = new Speaking(game, first, dialogo);
 		ActionHandler.getInstance().handle(action);
 	}
 

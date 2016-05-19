@@ -1,4 +1,4 @@
-package com.encumberedmonkeys.plunger.game.items;
+package com.encumberedmonkeys.plunger.game.entities.items;
 
 import com.encumberedmonkeys.plunger.game.Game;
 

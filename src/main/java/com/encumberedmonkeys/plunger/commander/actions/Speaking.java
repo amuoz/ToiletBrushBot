@@ -1,22 +1,23 @@
 package com.encumberedmonkeys.plunger.commander.actions;
 
 import com.encumberedmonkeys.plunger.game.Game;
-import com.encumberedmonkeys.plunger.game.items.Item;
+import com.encumberedmonkeys.plunger.game.entities.Entity;
+import com.encumberedmonkeys.plunger.game.entities.items.Item;
 import com.encumberedmonkeys.plunger.services.LocationService;
 
-public class Talk2 extends Action{
+public class Speaking extends Action{
     
-	private Integer dialogo;
+	private Integer dialog;
 	
-	public Talk2(Game game, Item first, Integer dialogo){
+	public Speaking(Game game, Entity first, Integer dialog){
         this.command = LocationService.getInstance().getString("command.talk");
         this.first = first;
         this.game = game;
-        this.dialogo = dialogo;
+        this.dialog = dialog;
     }
 
     @Override
     public void execute() {
-        first.talk(dialogo);
+        first.talk(dialog);
     }
 }
