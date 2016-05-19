@@ -30,6 +30,7 @@ public class Conversation {
 		active = true;
 		stop = false;
 		optionOff = new ArrayList<String>();
+		optionOn = new ArrayList<String>();
 	}
 
 }

@@ -12,6 +12,8 @@ public class Pelo extends Character {
 		actual = "";
 
 		Dialog d1 = new Dialog("dPelo1");
+		d1.setGreeting("_Plunger_: ¿Pelo, estás ahí?\n_Pelo_: No, me he ido de vacaciones al caribe no te jode.");
+
 		Dialog d2 = new Dialog("dPelo2");
 
 		// dPelo1
@@ -37,7 +39,7 @@ public class Pelo extends Character {
 		c2.setActive(false);
 		// movemos a dPelo2
 		c3.setDialog(d2.getName());
-		
+
 		Conversation c4 = new Conversation("4");
 		c4.setOption("Adios Pubert.");
 		c4.setAnswer("_Pubert_: Me encantó solo en casa, el momento del afeitado fué genial. ¡Adiós!");
@@ -63,7 +65,8 @@ public class Pelo extends Character {
 
 		c3 = new Conversation("3");
 		c3.setOption("¿A qué te dedicas en tu tiempo libre?");
-		c3.setAnswer("_Pelo_ : Planeo conquistar el mundo y esclavizar a la raza humana. ¿Por qué?\n_Plunger_ : Por nada por nada. ¡Mucho ánimo!");
+		c3.setAnswer(
+				"_Pelo_ : Planeo conquistar el mundo y esclavizar a la raza humana. ¿Por qué?\n_Plunger_ : Por nada por nada. ¡Mucho ánimo!");
 		c3.setDialog(d2.getName());
 
 		c4 = new Conversation("4");
@@ -71,7 +74,7 @@ public class Pelo extends Character {
 		c4.setAnswer("_Pelo_: Demos gracias al cuero cabelludo.");
 		// volvemos a dPelo1
 		c4.setDialog(d1.getName());
-		
+
 		d2.getConversations().put(c1.getId(), c1);
 		d2.getConversations().put(c2.getId(), c2);
 		d2.getConversations().put(c3.getId(), c3);

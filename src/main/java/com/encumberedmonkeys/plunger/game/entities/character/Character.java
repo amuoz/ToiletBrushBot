@@ -46,8 +46,15 @@ public abstract class Character extends Entity {
 	public void talk(Integer dialogId) {
 		List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 		Dialog dialog = dialogs.get(actual);
-		Conversation conversation = dialog.getConversations().get(dialogId);
+		Conversation conversation = dialog.getConversations().get(String.valueOf(dialogId));
 
+		for(String option: conversation.getOptionOff()) {
+			dialog.getConversations().get(option).setActive(false);
+		}
+		for(String option: conversation.getOptionOn()) {
+			dialog.getConversations().get(option).setActive(true);
+		}
+		
 		// actualizar opciones de teclado si no es cierre
 		if (!conversation.isStop()) {
 			actual = conversation.getDialog();
@@ -59,8 +66,8 @@ public abstract class Character extends Entity {
 
 	protected List<List<InlineKeyboardButton>> optionsKeyboard(Dialog dialog) {
 		List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
-		for (int i = 0; i < dialog.getConversations().size(); i++) {
-			Conversation conversation = dialog.getConversations().get(i);
+		for (int i = 1; i <= dialog.getConversations().size(); i++) {
+			Conversation conversation = dialog.getConversations().get(String.valueOf(i));
 			// solo incluimos conversaciones activas
 			if (conversation.isActive()) {
 				List<InlineKeyboardButton> inlineKeyboard = new ArrayList<InlineKeyboardButton>();

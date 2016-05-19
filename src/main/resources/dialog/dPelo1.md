@@ -1,6 +1,6 @@
 @S
-¿Pelo, estás ahí?
-No, me he ido de vacaciones al caribe no te jode.
+_Plunger_: ¿Pelo, estás ahí?\n
+_Pelo_: No, me he ido de vacaciones al caribe no te jode.
 return
 @1 ¿Quién eres?
 _Pelo_: Soy tu primer *pelo* pubertoso, soy tu *pelo* de adolescencia.
