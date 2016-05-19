@@ -5,6 +5,7 @@ import com.encumberedmonkeys.plunger.commander.Commander;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.TelegramApiException;
+import org.telegram.telegrambots.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.api.methods.updatingmessages.EditMessageReplyMarkup;
@@ -63,9 +64,12 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 
 			// callback inline keyboard
 			if (update.getCallbackQuery() != null) {
+				AnswerCallbackQuery answerCallbackConfirmation = new AnswerCallbackQuery();
+				answerCallbackConfirmation.setCallbackQueryId(update.getCallbackQuery().getId());
 				chatId = update.getCallbackQuery().getMessage().getChatId().toString();
 				messageId = update.getCallbackQuery().getMessage().getMessageId();
 				Commander.getInstance().executeCallback(update.getCallbackQuery());
+				answerCallbackQuery(answerCallbackConfirmation);
 			}
 
 		} catch (Exception e) {
@@ -140,7 +144,6 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 	}
 
 	public void editMessageTextToUser(String text, List<List<InlineKeyboardButton>> replies) {
-
 		EditMessageText editMessageText = new EditMessageText();
 		editMessageText.setChatId(chatId);
 		editMessageText.setMessageId(messageId);

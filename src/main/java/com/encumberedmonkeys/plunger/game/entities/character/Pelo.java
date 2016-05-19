@@ -11,7 +11,8 @@ public class Pelo extends Character {
 
 	public Pelo(Game game) {
 		super(game);
-		
+		start = "dPelo1";
+		actual = "";
 		Dialog d1 = new Dialog("dPelo1");
 		
 		Conversation c1 = new Conversation();

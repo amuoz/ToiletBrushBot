@@ -21,11 +21,6 @@ public class Cordoneras extends Item {
 	}
 
 	@Override
-	public void use() {
-		sendMessageToUser(getMsg("item.noMsg"));
-	}
-
-	@Override
 	public void use(Entity entity) {
 		entity.use(this);
 	}
