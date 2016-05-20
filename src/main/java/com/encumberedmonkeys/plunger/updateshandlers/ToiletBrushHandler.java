@@ -114,6 +114,8 @@ public class ToiletBrushHandler extends TelegramLongPollingBot {
 
 		ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
 		replyKeyboardMarkup.setKeyboard(replies);
+		//replyKeyboardMarkup.setOneTimeKeyboad(true);
+		replyKeyboardMarkup.setResizeKeyboard(true);
 
 		sendMessage.setReplayMarkup(replyKeyboardMarkup);
 

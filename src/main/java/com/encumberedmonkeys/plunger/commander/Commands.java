@@ -2,8 +2,7 @@ package com.encumberedmonkeys.plunger.commander;
 
 /**
  * @author muoz & thenanox
- * @version 0.1
- * Bot commands
+ * @version 0.1 Bot commands
  */
 public class Commands {
 	public static final String helpCmd = "/help";

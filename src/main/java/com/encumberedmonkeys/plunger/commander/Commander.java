@@ -1,17 +1,31 @@
 package com.encumberedmonkeys.plunger.commander;
 
-import com.encumberedmonkeys.plunger.commander.actions.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.telegram.telegrambots.api.objects.CallbackQuery;
+import org.telegram.telegrambots.api.objects.Message;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardButton;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
+
+import com.encumberedmonkeys.plunger.commander.actions.Action;
+import com.encumberedmonkeys.plunger.commander.actions.Examine;
+import com.encumberedmonkeys.plunger.commander.actions.Inventory;
+import com.encumberedmonkeys.plunger.commander.actions.Pick;
+import com.encumberedmonkeys.plunger.commander.actions.Shit;
+import com.encumberedmonkeys.plunger.commander.actions.Speaking;
+import com.encumberedmonkeys.plunger.commander.actions.Talk;
+import com.encumberedmonkeys.plunger.commander.actions.Use;
+import com.encumberedmonkeys.plunger.commander.actions.UseWith;
 import com.encumberedmonkeys.plunger.game.Game;
 import com.encumberedmonkeys.plunger.game.Messages;
 import com.encumberedmonkeys.plunger.game.entities.Entity;
 import com.encumberedmonkeys.plunger.services.LocationService;
 import com.encumberedmonkeys.plunger.updateshandlers.ToiletBrushHandler;
-import lombok.extern.slf4j.Slf4j;
-import org.telegram.telegrambots.api.objects.CallbackQuery;
-import org.telegram.telegrambots.api.objects.Message;
 
-import java.util.HashMap;
-import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Commander {
@@ -63,9 +77,8 @@ public class Commander {
 		case Commands.languageCmd:
 			if (input.length == 2) {
 				setLanguage(input[1]);
-				sendMessageToUser(Messages.language());
 			} else {
-				sendMessageToUser("¿A que idioma quieres cambiarlo?");
+				askLanguage();
 			}
 			break;
 		default:
@@ -180,6 +193,15 @@ public class Commander {
 			locationService.setLanguage(language);
 		}
 		sendMessageToUser("Se ha cambiado el idioma a: " + language);
+	}
+
+	private void askLanguage() {
+		List<KeyboardRow> replies = new ArrayList<KeyboardRow>();
+		KeyboardRow keyboardRow = new KeyboardRow();
+		keyboardRow.add(new KeyboardButton("/language en"));
+		keyboardRow.add(new KeyboardButton("/language es"));
+		replies.add(keyboardRow);
+		ToiletBrushHandler.getInstance().sendKeyboardMessageToUser(Messages.language(), replies);
 	}
 
 	private void sendMessageToUser(String text) {
