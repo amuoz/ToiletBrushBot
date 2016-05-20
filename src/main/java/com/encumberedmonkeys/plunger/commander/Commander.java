@@ -19,6 +19,13 @@ public class Commander {
 	private static final Commander COMMANDER = new Commander();
 	private static final Map<Integer, Game> games = new HashMap<>();
 
+	private static final String use = LocationService.getInstance().getString("command.use");
+	private static final String pick = LocationService.getInstance().getString("command.pick");
+	private static final String examine = LocationService.getInstance().getString("command.examine");
+	private static final String talk = LocationService.getInstance().getString("command.talk");
+	private static final String inventory = LocationService.getInstance().getString("command.inventory");
+	private static final String shit = LocationService.getInstance().getString("command.shit");
+
 	public static Commander getInstance() {
 		return COMMANDER;
 	}
@@ -72,8 +79,9 @@ public class Commander {
 
 	private Action createAction(Game game, String[] input) {
 		Action action = null;
-		switch (input[0].toLowerCase()) {
-		case "examinar":
+		String comando = input[0].toLowerCase();
+
+		if (comando.equals(Commander.examine)) {
 			if (input.length == 2) {
 				Entity first = game.getEntity(input[1]);
 				if (first != null) {
@@ -86,8 +94,7 @@ public class Commander {
 			} else {
 				sendMessageToUser(Messages.tooMuchItems());
 			}
-			break;
-		case "coger":
+		} else if (comando.equals(Commander.pick)) {
 			if (input.length == 2) {
 				Entity first = game.getEntity(input[1]);
 				if (first != null) {
@@ -100,8 +107,7 @@ public class Commander {
 			} else {
 				sendMessageToUser(Messages.tooMuchItems());
 			}
-			break;
-		case "usar":
+		} else if (comando.equals(Commander.use)) {
 			if (input.length == 2) {
 				Entity first = game.getEntity(input[1]);
 				if (first != null) {
@@ -124,8 +130,7 @@ public class Commander {
 			} else {
 				sendMessageToUser(Messages.tooMuchItems());
 			}
-			break;
-		case "hablar":
+		} else if (comando.equals(Commander.talk)) {
 			if (input.length == 2) {
 				Entity first = game.getEntity(input[1]);
 				if (first != null) {
@@ -138,24 +143,21 @@ public class Commander {
 			} else {
 				sendMessageToUser(Messages.tooMuchItems());
 			}
-			break;
-		case "inventario":
+		} else if (comando.equals(Commander.inventory)) {
 			if (input.length == 1) {
 				action = new Inventory(game);
 			} else {
 				sendMessageToUser(Messages.tooMuchItems());
 			}
-			break;
-		case "cagar":
+		} else if (comando.equals(Commander.shit)) {
 			if (input.length == 1) {
 				action = new Shit(game);
 			}
-			break;
-		default:
+		} else {
 			log.info("El comando no existe: ", input[0]);
 			sendMessageToUser(Messages.commandDoesntExist());
-			break;
 		}
+
 		return action;
 	}
 
