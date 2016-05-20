@@ -12,7 +12,7 @@ option-off 2
 return
 @3#off#Tengo algunas dudas a cerca de los pelos de adolescencia.
 _Pelo_ : Adelante. Veamos hasta dónde llega tu ignorancia.
-go-to dPelo2.md
+go-to dPelo2
 @4#Adios Pubert.
 _Pelo_ : Adiós. Y recuerda, si dejas que crezca mucho me saldrán granos alrededor.
 stop

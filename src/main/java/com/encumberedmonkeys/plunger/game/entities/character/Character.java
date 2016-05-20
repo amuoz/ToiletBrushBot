@@ -22,6 +22,7 @@ public abstract class Character extends Entity {
 	private final String STOP = "stop";
 	private final String OFF = "off";
 	private final String GOTO = "go-to";
+	private final String PAD = "#";
 
 	protected String start;
 	protected String actual;
@@ -107,7 +108,8 @@ public abstract class Character extends Entity {
 				String line = scanner.nextLine();
 
 				if (line.startsWith(INIT)) { // @S
-					dialog = new Dialog(file.getName()); // dPelo1
+					
+					dialog = new Dialog(file.getName().substring(0, file.getName().length()-3)); // dPelo1
 
 					line = scanner.nextLine();
 					StringBuilder greeting = new StringBuilder("");
@@ -123,7 +125,7 @@ public abstract class Character extends Entity {
 					
 				} else if (line.startsWith(OPTION)) {
 
-					String[] option = line.split("#"); // @1#off#question
+					String[] option = line.split(PAD); // @1#off#question
 					String conversationId = option[0].substring(1, option[0].length());
 					Conversation conversation = new Conversation(conversationId);
 					dialog.getConversations().put(conversation.getId(), conversation);
