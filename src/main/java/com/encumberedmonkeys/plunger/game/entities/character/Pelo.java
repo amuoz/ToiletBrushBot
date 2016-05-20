@@ -8,9 +8,8 @@ public class Pelo extends Character {
 
 	public Pelo(Game game) {
 		super(game);
-		start = "dPelo1";
-		actual = "";
-
+		
+		/*
 		Dialog d1 = new Dialog("dPelo1");
 		d1.setGreeting("_Plunger_: ¿Pelo, estás ahí?\n_Pelo_: No, me he ido de vacaciones al caribe no te jode.");
 
@@ -79,10 +78,15 @@ public class Pelo extends Character {
 		d2.getConversations().put(c2.getId(), c2);
 		d2.getConversations().put(c3.getId(), c3);
 		d2.getConversations().put(c4.getId(), c4);
-
+		*/
+		
 		dialogs = new HashMap<String, Dialog>();
-		dialogs.put(d1.getName(), d1);
-		dialogs.put(d2.getName(), d2);
+		Dialog dPelo1 = this.dialogMapper("dialog/dPelo1.md");
+		dialogs.put(dPelo1.getName(), dPelo1);
+		Dialog dPelo2 = this.dialogMapper("dialog/dPelo2.md");
+		dialogs.put(dPelo2.getName(), dPelo2);
+		
+		start = dPelo1.getName();
 	}
 
 	@Override
